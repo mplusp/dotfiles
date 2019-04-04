@@ -131,7 +131,7 @@ set cmdheight=2
 " Options - Behaviour - {{{
 
 " Disable automatic hardwrapping while typing.
-set textwidth=0                                             
+set textwidth=0
 
 " Allow backspacing over everything in insert mode.
 set backspace=indent,eol,start
@@ -361,19 +361,19 @@ if has("persistent_undo")
 
   " Save persistent undo files to the first existing path of this list.
   set undodir=$HOME/.df-tmp/vim/undo//
-  
+
   " Maintain undo history between sessions.
   set undofile
-  
+
   " Number of undos.
   set undolevels=1000
-  
+
   " Number of lines to save for undo.
   set undoreload=10000
 endif
 
 " History, Data and Backups - }}}
- 
+
 
 " Autocmd - {{{
 
