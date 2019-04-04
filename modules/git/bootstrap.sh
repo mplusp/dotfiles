@@ -11,6 +11,7 @@
 #
 # Usage: 'bootstrap.sh'
 
+
 # creates symlinks
 create_symlink() {
   target="$1"
@@ -24,9 +25,11 @@ create_symlink() {
   fi
 }
 
+
 # configure script
 script_path=$(cd "$(dirname "$0")" && pwd -P)
 payload_path="$script_path/payload"
+
 
 # create relevant symlinks to module payload
 target="$payload_path/gitconfig"
