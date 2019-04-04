@@ -32,10 +32,10 @@ payload_path="$script_path/payload"
 vim_temp_path="$HOME/.df-tmp/vim"
 
 
-# create temp/backup/swap/undo directories, if neccessary
-if [ ! -d "$vim_temp_path/backup" ]; then 
+# create temp/backup/swap/undo directories, if necessary
+if [ ! -d "$vim_temp_path/backup" ]; then
   mkdir -p "$vim_temp_path/backup"
-fi  
+fi
 
 if [ ! -d "$vim_temp_path/swap" ]; then
   mkdir -p "$vim_temp_path/swap"
@@ -49,6 +49,12 @@ fi
 # create vim-plug plugins directory, if necessary
 if [ ! -d "$vim_temp_path/plugged" ]; then
   mkdir -p "$vim_temp_path/plugged"
+fi
+
+
+# create actual payload/vim directory, if necessary
+if [ ! -d "$payload_path/vim" ]; then
+  mkdir -p "$payload_path/vim"
 fi
 
 
