@@ -1,0 +1,393 @@
+" Vim configuration file.
+" ------------------------------------------------------------------------------
+" Marco Peluso
+" marcopeluso.com
+" marco AT pelu DOT so
+" ------------------------------------------------------------------------------
+
+
+" vim-plug - {{{
+
+" Automatic installation of vim-plug, if it's not available.
+if empty(glob('~/.vim/autoload/plug.vim'))
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+
+" Automatically install missing plugins on startup.
+autocmd VimEnter *
+  \  if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
+  \|   PlugInstall --sync | q
+  \| endif
+
+" Plugins will be downloaded under the specified directory.
+call plug#begin('~/.df-tmp/vim/plugged')
+
+" vim-plug - Color Schemes
+Plug 'chriskempson/base16-vim'
+Plug 'chriskempson/tomorrow-theme', { 'rtp': 'vim/' }
+Plug 'w0ng/vim-hybrid'
+Plug 'endel/vim-github-colorscheme'
+
+" vim-plug - Other Plugins
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'mattn/emmet-vim'
+Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-unimpaired'
+
+" List ends here. Plugins become visible to Vim after this call.
+call plug#end()
+
+" vim-plug - }}}
+
+
+" Plugin Specific Stuff - airline - {{{
+
+" Using exists() in .vimrc to check if certain plugins are available doesn't work
+" because plugins are only loaded after vim has finished processing .vimrc.
+" So we stick the checking into this function and load the function using autocmd
+" when we enter Vim.
+" For more info see :help startup.
+function! ConfigurePlugins()
+
+  " vim-airline
+  if exists(":vim-airline")
+
+    " enable vim-airline's smarter tab line
+    let g:airline#extensions#tabline#enabled = 1
+    let g:airline#extensions#tabline#show_splits = 0
+    " let g:airline#extensions#tabline#fnamemod = ':p:.'
+    let g:airline#extensions#tabline#fnamemod = ':t.'
+
+    " automatically populate the g:airline_symbols dictionary with powerline
+    " symbols.
+    let g:airline_powerline_fonts = 1
+
+  endif
+endfunction
+
+" Plugin Specific Stuff - airline - }}}
+
+
+" Options - Compatibility - {{{
+
+" Use Vim mode, rather then Vi compatible mode.
+" This must be first, because it changes other options as a side effect.
+set nocompatible
+
+set encoding=utf-8
+
+" Enable file type detection.
+filetype on
+
+" Enable loading plugin files for specific file types.
+filetype plugin on
+
+" Enable loading indent files for specific file types.
+filetype indent on
+
+" Enable syntax highlighting.
+syntax on
+
+" Options - Compatibility - }}}
+
+
+" Options - General Appearance - {{{
+
+" Optimize color schemes/syntax highlighting for dark/light backgrounds.
+" Set this before actually setting the color scheme.
+" Otherwise some color schemes might not load.
+set background=light
+
+" Actually set the color scheme
+colorscheme github
+
+" Show line numbers.
+set number
+
+" Options - General Appearance - }}}
+
+
+" Options - Status Line - {{{
+
+" Always show the status line.
+set laststatus=2
+
+" Display cursor position in the lower right corner or in the status line if it exists.
+set ruler
+
+" Show incomplete commands on the bottom right.
+set showcmd
+
+" Number of screen lines to use for the command-line. Helps avoiding |hit-enter| prompts.
+set cmdheight=2
+
+" Options - Status Line - }}}
+
+
+" Options - Behaviour - {{{
+
+" Disable automatic hardwrapping while typing.
+set textwidth=0                                             
+
+" Allow backspacing over everything in insert mode.
+set backspace=indent,eol,start
+
+" Maintain more context around the cursor when cursor moves outside the
+" viewport of the current window.
+set scrolloff=5
+
+" Write the old file out when switching between files.
+set autowrite
+
+" Switch between buffers without Vim warning about unsaved state.
+set hidden
+
+set splitbelow
+" Splitting a window will put the new window below the current window.
+
+" Vertical splitting a window will put the new window to the right of the
+" current window.
+set splitright
+
+" Options - Behaviour - }}}
+
+
+" Options - Indents and Tabs - {{{
+
+" Number of spaces that a <Tab> in the file counts for.
+set tabstop=2
+
+" Enable automatic indentation.
+set autoindent
+
+" Enable smart automatic indentation when starting a new line.
+set smartindent
+
+" Number of spaces to use for each step of (auto)indentation.
+" Used for 'cindent', >>, <<, etc.
+set shiftwidth=2
+
+" Expand <Tab>s to spaces when tabbing in insert mode.
+set expandtab
+
+" Options - Indents and Tabs - }}}
+
+
+" Options - Folding - {{{
+
+" Folds defined by markers in the text.
+set foldmethod=marker
+
+" Sets the maximum nesting of folds for the "indent" and "syntax" methods.
+set foldnestmax=10
+
+" When foldenable is off, all folds are open.
+set nofoldenable
+
+" Options - Folding - }}}
+
+
+" Options - Searching - {{{
+
+" Highlight search pattern.
+set hlsearch
+
+" Do incremental searching all the time.
+set incsearch
+
+" Ignore case of characters when searching.
+set ignorecase
+
+" Override ignorecase option if the search pattern contains upper case characters.
+set smartcase
+
+" Options - Searching - }}}
+
+
+" Mouse Support - {{{
+
+" Configure mouse support in non-gui Vim. The terminal has to support this.
+if has("mouse")
+
+  " Enable mouse in all modes.
+  set mouse=a
+
+  " tmux sets $TERM to 'screen' and knows the extended mouse mode.
+  if &term =~ '^screen'
+    set ttymouse=xterm2
+  endif
+endif
+
+" Mouse Support - }}}
+
+
+" Key Mappings - {{{
+
+" Remap <leader>.
+" Note, that 'mapleader' is a Vim variable and not a Vim option.
+" The value of this variable can be changed using the 'let' command.
+" The default mapleader is the backslash.
+let mapleader = " "
+
+" Reindent entire file while staying at the same position.
+nnoremap <leader>ri mzgg=G`z
+
+" Retab entire file while staying at the same position.
+nnoremap <leader>rt :retab<cr>
+
+" Strip all trailing whitespace from the current buffer.
+" Center current line afterwards.
+nnoremap <leader>sws mz:%s/\s\+$//e<cr>`zzz
+
+" Toggle 'set list'. Shows/hides invisible characters.
+nnoremap <leader>l :set list!<cr>
+
+" Ctrl-L redraws the screen. Now it will also toggle search highlighting.
+nnoremap <silent> <C-L> :set hlsearch!<cr><C-L>
+
+" Browse list of recent files.
+nnoremap <leader>rf :browse oldfiles<cr>
+
+" Split line at current cursor position without entering insert mode.
+" Default mapping for K is 'look up word under cursor in man', which I don't use.
+:nnoremap K i<cr><esc>
+
+" Toggle 'set paste' and show the resultung state.
+nnoremap <leader>pp :set paste!<cr>:set paste?<cr>
+set pastetoggle=<F12>
+
+" Select entire buffer.
+nnoremap vaa ggvGg_
+nnoremap Vaa ggVG
+
+" Center line with search results.
+nnoremap n nzz
+nnoremap N Nzz
+
+" Make Y behave like the C and D.
+nnoremap Y y$
+
+" j and k move by display lines, gj and gk move by physical lines. (normal mode).
+nnoremap k gk
+nnoremap j gj
+nnoremap gk k
+nnoremap gj j
+
+" Toggle background light/dark and also switch colorscheme accordingly
+" TODO: Can I use something like a real if with blocks, to make this less complicated?
+nnoremap <leader>bg :let &background = ( &background == "dark"? "light" : "dark" )<cr>:execute "colorscheme " . ( &background == "dark"? "hybrid" : "github" )<cr>:set background?<cr>
+
+" Source currently used vimrc again.
+nnoremap <leader>svrc :source $MYVIMRC<cr>
+
+" Window splitting mappings.
+nnoremap <leader>vsp :vsp<cr>
+nnoremap <leader>sp :sp<cr>
+nnoremap <leader>cw <C-W>c
+
+" Easier split navigation.
+" nnoremap <C-J> <C-W><C-J>
+" nnoremap <C-K> <C-W><C-K>
+" nnoremap <C-L> <C-W><C-L>
+" nnoremap <C-H> <C-W><C-H>
+
+" Key Mappings - }}}
+
+
+" Abbreviations - {{{
+
+" abbrev is used in Insert, Replace and Command-line mode.
+" cabbrev is used in Command-Line mode only.
+" iabbrev is used in Insert and Replace mode only.
+
+" Clear all currently active abbreviations.
+abclear
+
+" Abbreviations - }}}
+
+
+" History, Data and Backups - {{{
+
+" The following is valid for 'set backupdir=path1,path2',
+" 'set directory=path1,path2', 'set directory=path1,path2',
+" 'set undodir=path1,path2':
+"
+"  - If a path doesn't exist, it is skipped.
+"
+"  - The double slashes at the end of the path, lets vim create those files
+"    with full pathes (it uses % instead of slashes) so that they don't
+"    conflict with each other, when editing files with the same name in
+"    different directories.
+"
+"  - If a path doesn't exist, it is skipped.
+
+" Create temp/backup/swap directories if they don't exist yet.
+if !isdirectory($HOME . "/.df-tmp/vim")
+  call mkdir($HOME . "/.df-tmp/vim", "p")
+endif
+
+if !isdirectory($HOME . "/.df-tmp/vim/backup")
+  call mkdir($HOME . "/.df-tmp/vim/backup", "p")
+endif
+
+if !isdirectory($HOME . "/.df-tmp/vim/swap")
+  call mkdir($HOME . "/.df-tmp/vim/swap", "p")
+endif
+
+
+" Save backup files to the first existing path of the list.
+set backupdir=$HOME/.df-tmp/vim/backup//
+
+" Save swap files to the first existing path of the list.
+set directory=$HOME/.df-tmp/vim/swap//
+
+" Create viminfo file here.
+set viminfo+=n/$HOME/.df-tmp/vim/viminfo
+
+" Set up command-line history size.
+set history=10000
+
+" If vim was compiled with persistent undo, use it/set it up.
+if has("persistent_undo")
+
+  " Create directory for persistend undo, if it doesn't exist yet.
+  if !isdirectory($HOME . "/.df-tmp/vim/undo")
+    call mkdir($HOME . "/.df-tmp/vim/undo", "p")
+  endif
+
+  " Save persistent undo files to the first existing path of this list.
+  set undodir=$HOME/.df-tmp/vim/undo//
+  
+  " Maintain undo history between sessions.
+  set undofile
+  
+  " Number of undos.
+  set undolevels=1000
+  
+  " Number of lines to save for undo.
+  set undoreload=10000
+endif
+
+" History, Data and Backups - }}}
+ 
+
+" Autocmd - {{{
+
+" If Vim is compiled with +autocmd
+if has("autocmd")
+
+  " Automatically change current directory to that of the file in the buffer.
+  autocmd BufEnter * cd %:p:h
+
+  " Source .vimrc after saving a buffer named .vimrc or vimrc.
+  autocmd BufWritePost .vimrc,vimrc source $MYVIMRC
+
+  " Load plugin-specific stuff after entering Vim.
+  autocmd VimEnter * call ConfigurePlugins()
+endif
+
+" Autocmd - }}}
