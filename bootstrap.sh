@@ -7,18 +7,18 @@
 # marco AT pelu DOT so
 # ------------------------------------------------------------------------------
 # This script bootstraps our dotfiles, using a simple module based approach.
-# This script just runs the bootstrap script contained in each module.
 #
-# The modules are just some directories contained inside the modules directory.
-# Each module contains its own bootstrap script and all relevant files for that
-# module.
+# Modules are just directories inside the modules directory.
+# Each module contains its own bootstrap script and the relevant payload for
+# that module.
+#
+# This script just runs the bootstrap script contained in each module.
 # 
-# These bootstrap scripts can also be run separately, to setup each module on
-# its own.
+# The modules' bootstrap scripts can also be run on their own.
 #
 # Usage:
-#   - to install a single module:          'bootstrap.sh modulename'
-#   - to install multiple modules at once: 'bootstrap.sh modulename1 modulename2 ...'
+#   - to install a single module:          'bootstrap.sh module'
+#   - to install multiple modules at once: 'bootstrap.sh module1 module2 ...'
 #   - to install all available modules:    'bootstrap.sh'
 
 
@@ -27,10 +27,12 @@ script_path=$(cd "$(dirname "$0")" && pwd -P)
 modules_path="$script_path/modules"
 modules_bootstrap_script="bootstrap.sh"
 
+
 # given no arguments
 if [ $# -eq 0 ]; then
   echo "usage: bootstrap.sh --all | modulename | modulename ..."
 fi
+
 
 # given one argument
 if [ $# -eq 1 ]; then
@@ -43,6 +45,7 @@ if [ $# -eq 1 ]; then
   fi
 fi
 
+
 # given more than one argument
 if [ $# -gt 1 ]; then
   # all given modules should be bootstrapped
@@ -51,6 +54,7 @@ if [ $# -gt 1 ]; then
     modules_to_install="$modules_to_install $modules_path/$module"
   done
 fi
+
 
 # actually try to bootstrap the modules
 for module in $modules_to_install
