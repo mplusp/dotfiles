@@ -58,3 +58,6 @@ target="$payload_path/zshfunctions"
 symlink="$HOME/.zshfunctions"
 create_symlink "$target" "$symlink"
 
+
+# make zsh the default shell
+chsh -s $(which zsh)
