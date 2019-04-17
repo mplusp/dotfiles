@@ -100,10 +100,10 @@ syntax on
 " Optimize color schemes/syntax highlighting for dark/light backgrounds.
 " Set this before actually setting the color scheme.
 " Otherwise some color schemes might not load.
-set background=light
+set background=dark
 
 " Actually set the color scheme
-colorscheme github
+colorscheme hybrid
 
 " Show line numbers.
 set number
