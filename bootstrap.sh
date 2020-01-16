@@ -30,7 +30,7 @@ modules_bootstrap_script="bootstrap.sh"
 
 # given no arguments
 if [ $# -eq 0 ]; then
-  echo "usage: bootstrap.sh --all | modulename | modulename ..."
+  echo "usage: bootstrap.sh --all | --list | modulename | modulename ..."
 fi
 
 
@@ -39,6 +39,13 @@ if [ $# -eq 1 ]; then
   if [ "$1" = "--all" ]; then
     # all available modules should be bootstrapped
     modules_to_install="$modules_path"/*
+  elif [ "$1" = "--list" ]; then
+    # list available modules
+    available_modules="$modules_path"/*
+    for module in $available_modules
+    do
+      echo "$(basename $module)"
+    done
   else
     # given module should be bootstrapped
     modules_to_install="$modules_path/$1"
