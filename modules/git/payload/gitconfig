@@ -7,27 +7,25 @@
 
 
 [user]
-	name = Marco Peluso
-	email = marco@pelu.so
+  name = Marco Peluso
+  email = marco@pelu.so
 [alias]
-	st = status
-	ci = commit
-	br = branch
-	lg = log -p
-	ol = log --pretty=oneline
-	lol = log --graph --decorate --pretty=oneline --abbrev-commit --all
-	tree = log --graph --pretty=oneline --decorate
-	what = whatchanged
-	who = shortlog -s
-	stage = add
-	unstage = reset HEAD
+  st = status
+  ci = commit
+  br = branch
+  lg = log -p
+  ol = log --pretty=oneline
+  lol = log --graph --decorate --pretty=oneline --abbrev-commit --all
+  what = whatchanged
+  who = shortlog -s
+  unstage = reset HEAD
 [color]
-	branch = auto
-	diff = auto
-	interactive = auto
-	pager = true
-	status = auto
-	ui = auto
+  branch = auto
+  diff = auto
+  interactive = auto
+  pager = true
+  status = auto
+  ui = auto
 [core]
-	excludesfile = ~/.gitignore
-	editor = vim
+  excludesfile = ~/.gitignore
+  editor = vim
