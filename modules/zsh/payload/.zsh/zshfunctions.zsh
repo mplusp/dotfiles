@@ -1,18 +1,18 @@
 #!/bin/zsh
 # ------------------------------------------------------------------------------
-# Function definitions for zsh.
+# zsh function definitions
 # ------------------------------------------------------------------------------
 # Marco Peluso
 # marcopeluso.com
 # marco AT pelu DOT so
 # ------------------------------------------------------------------------------
-# This file isn't automatically executed.
-# Source it via .zshrc or another zsh startup file.
+# This file isn't automatically sourced.
+# Source it via .zshrc or another appropriate zsh startup file.
 # ------------------------------------------------------------------------------
 
 
-# General Stuff - {{{
-
+# general
+# ------------------------------------------------------------------------------
 # Make directory and directly cd into it. Supports directory hierarchies and
 # spaces in directory names.
 function mkcd() {
@@ -25,28 +25,3 @@ function mkcd() {
 function ff() {
   find . -name "$1" -print
 }
-
-# General Stuff - }}}
-
-
-# VirtualBox / VMWare Fusion - {{{
-
-# List all running VirtualBox and VMWare Fusion virtual machines
-function vmlist-running() {
-  echo "\n### Running VirtualBox virtual machines:\n"
-  VBoxManage list runningvms
-
-  echo "\n### Running VMWare Fusion virtual machines:\n"
-  vmrun list
-}
-
-
-# wan.vm.vu
-function vmstart-wan.vm.vu() {
-  VBoxManage startvm wan.vm.vu --type headless
-}
-function vmshutdown-wan.vm.vu() {
-  ssh -t wan@wan.vm.vu 'sudo shutdown -h now'
-}
-
-# VirtualBox - }}}
