@@ -1,0 +1,134 @@
+#!/bin/zsh
+# ------------------------------------------------------------------------------
+# zsh startup script for login shells and interactive shells
+# ------------------------------------------------------------------------------
+# Marco Peluso
+# marcopeluso.com
+# marco AT pelu DOT so
+# ------------------------------------------------------------------------------
+# zsh config files execution matrix, from left to right, top to bottom:
+#
+# all users     | user             | login shells | interactive shells | scripts
+# --------------+------------------+--------------+--------------------+--------
+# /etc/zshenv   | $HOME/.zshenv    | x            | x                  | x
+# /etc/zprofile | $HOME/.zprofile  | x            |                    |
+# /etc/zshrc    | $HOME/.zshrc     | x            | x                  |
+# /etc/zlogin   | $HOME/.zlogin    | x            |                    |
+# --------------+------------------+--------------+--------------------+--------
+# /etc/zlogout  | $HOME/.zlogout   | x            |                    |
+
+
+# ------------------------------------------------------------------------------
+### TODO: setup prompt, completion, plugin manager, vcs-prompt-plugin ###
+# ------------------------------------------------------------------------------
+
+
+# script configuration
+# ------------------------------------------------------------------------------
+zsh_temp_path="$HOME/.dotfiles-tmp/zsh"
+zsh_dotdir="$HOME/.zsh"
+
+
+# configure aliases and functions
+# ------------------------------------------------------------------------------
+# if aliases file exists, source it
+if [[ -f $HOME/zshaliases.zsh ]]; then
+  source $HOME/.zshaliases.zsh
+fi
+
+# if functions file exists, source it
+if [[ -f $HOME/zshfunctions.zsh ]]; then
+  source $HOME/.zshfunctions.zsh
+fi
+
+
+# general options
+# ------------------------------------------------------------------------------
+# List jobs in the long format by default.
+setopt LONG_LIST_JOBS
+
+# Disable flow control and hence restore the ability to use C-s and C-q
+setopt NO_FLOW_CONTROL
+
+
+# set up line editor
+# ------------------------------------------------------------------------------
+# enable vi mode
+bindkey -v
+
+# bind Meta-. to insert last word of previous command and stay in insert mode
+bindkey -M viins "\e." insert-last-word
+
+# bind C-R to search backwards in all modes
+bindkey '^R' history-incremental-search-backward
+
+# bind C-S to search forward in all modes
+bindkey '^S' history-incremental-search-forward
+
+# history expansion on space (do "!-3<space>" to expand and be able to edit that
+# line)
+bindkey ' '  magic-space
+
+# bind history navigation to C-P and C-N in all modes
+bindkey '^P' up-line-or-history
+
+# bind history navigation to C-P and C-N in all modes
+bindkey '^N' down-line-or-history
+
+# bind C-D to forward delete next char
+bindkey '^D' delete-char
+
+# additionaly set up basic Emacs-style navigation
+bindkey '^A' beginning-of-line
+bindkey '^E' end-of-line
+bindkey '^F' forward-char
+bindkey '^B' backward-char
+
+
+# set up completion
+# ------------------------------------------------------------------------------
+# load zutil to be able to use zstyle
+autoload -U zutil
+
+# initialize completion system
+# compinit -i ignores insecure directories by default
+# compinit -u uses insecure directories by default
+autoload -U compinit -i
+
+# set location for compinit's dumpfile
+# given path has to exist
+compinit -d "$zsh_temp_path/.zcompdump"
+
+# use cache for completion
+zstyle ':completion:*' use-cache on
+zstyle ':completion:*' cache-path $zsh_temp_path/cache
+
+## case-insensitive (all), partial-word and then substring completion
+zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*' verbose yes
+
+
+# set up command history
+# ------------------------------------------------------------------------------
+# enable globally shared history (same history in every shell)
+setopt SHARE_HISTORY
+
+# when writing out the history file, older commands that duplicate newer ones
+# are omitted
+setopt HIST_SAVE_NO_DUPS
+
+# prevent entries preceded with at least one space from being saved to history
+setopt HIST_IGNORE_SPACE
+
+# Whenever the user enters a line with history expansion, don't execute the line
+# directly. Instead, perform history expansion and reload the line into the
+# editing buffer.
+setopt HIST_VERIFY
+
+# max number of history lines in memory
+HISTSIZE=25000
+
+# setup file containing the command history
+HISTFILE="$zsh_temp_path/.zsh_history"
+
+# max number of history lines saved
+SAVEHIST=$HISTSIZE

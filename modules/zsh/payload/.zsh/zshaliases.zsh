@@ -11,16 +11,14 @@
 # ------------------------------------------------------------------------------
 
 
-# zsh - {{{
-
+# zsh
+# ------------------------------------------------------------------------------
 # source .zshrc
-alias szshrc='source ~/.zshrc'
-
-# zsh - }}}
+alias szshrc='source ~/.zsh/.zshrc'
 
 
-# ls - {{{
-
+# ls
+# ------------------------------------------------------------------------------
 # list files and directories in long mode
 alias l='ls -lhF'
 
@@ -33,34 +31,8 @@ alias lh='ls -lhdF .*'
 # list only directories in long mode
 alias ld='ls -lhdF *(/)'
 
-# list only hidden files
-alias lhf='ls -alhdF .*(.)'
 
-# list only directories
-alias lsd='ls -hFd *(/)'
-
-# list only directories in long mode (including hidden ones)
-alias lad='ls -alhFd *(/) .*(/)'
-
-# list only hidden directories
-alias lhd='ls -alhdF .*(/)'
-
-# ls - }}}
-
-
-# cd - {{{
-
+# cd
+# ------------------------------------------------------------------------------
 alias cdn='cd ~/nextcloud'
 alias cddf='cd ~/nextcloud/dotfiles'
-alias cdfra='cd ~/nextcloud/fra-uas'
-
-# cd - }}}
-
-
-# macOS Specific - {{{
-
-# flush dns cache (macOS)
-alias flushdns-macos='sudo dscacheutil -flushcache;sudo killall -HUP mDNSResponder'
-
-# macOS Specific - }}}
-

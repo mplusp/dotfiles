@@ -1,6 +1,6 @@
 #!/bin/sh
 # ------------------------------------------------------------------------------
-# Bootstrap script for zsh dotfiles.
+# Dotfiles bootstrap script for zsh
 # ------------------------------------------------------------------------------
 # Marco Peluso
 # marcopeluso.com
@@ -29,7 +29,7 @@ create_symlink() {
 # configure script
 script_path=$(cd "$(dirname "$0")" && pwd -P)
 payload_path="$script_path/payload"
-zsh_temp_path="$HOME/.df-tmp/zsh"
+zsh_temp_path="$HOME/.dotfiles-tmp/zsh"
 
 
 # create temp and cache directories, if necessary
@@ -42,20 +42,16 @@ fi
 
 
 # create relevant symlinks to module payload
-target="$payload_path/zshenv"
+target="$payload_path/.zsh"
+symlink="$HOME/.zsh"
+create_symlink "$target" "$symlink"
+
+target="$payload_path/.zsh/.zshenv"
 symlink="$HOME/.zshenv"
 create_symlink "$target" "$symlink"
 
-target="$payload_path/zshrc"
+target="$payload_path/.zsh/.zshrc"
 symlink="$HOME/.zshrc"
-create_symlink "$target" "$symlink"
-
-target="$payload_path/zshaliases"
-symlink="$HOME/.zshaliases"
-create_symlink "$target" "$symlink"
-
-target="$payload_path/zshfunctions"
-symlink="$HOME/.zshfunctions"
 create_symlink "$target" "$symlink"
 
 
