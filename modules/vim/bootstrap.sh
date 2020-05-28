@@ -29,7 +29,7 @@ create_symlink() {
 # configure script
 script_path=$(cd "$(dirname "$0")" && pwd -P)
 payload_path="$script_path/payload"
-vim_temp_path="$HOME/.df-tmp/vim"
+vim_temp_path="$HOME/.dotfiles-tmp/vim"
 
 
 # create temp/backup/swap/undo directories, if necessary
