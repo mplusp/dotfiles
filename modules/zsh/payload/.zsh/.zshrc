@@ -19,7 +19,10 @@
 
 
 # ------------------------------------------------------------------------------
-### TODO: setup prompt, completion, plugin manager, vcs-prompt-plugin ###
+# TODO:
+# - plugin manager
+# - setup prompt
+# - vcs-prompt-plugin
 # ------------------------------------------------------------------------------
 
 
@@ -29,7 +32,7 @@ zsh_temp_path="$HOME/.dotfiles-tmp/zsh"
 zsh_dotdir="$HOME/.zsh"
 
 
-# configure aliases and functions
+# aliases and functions
 # ------------------------------------------------------------------------------
 # if aliases file exists, source it
 if [[ -f $zsh_dotdir/zshaliases.zsh ]]; then
@@ -67,7 +70,7 @@ bindkey '^S' history-incremental-search-forward
 
 # history expansion on space (do "!-3<space>" to expand and be able to edit that
 # line)
-bindkey ' '  magic-space
+bindkey ' ' magic-space
 
 # bind history navigation to C-P and C-N in all modes
 bindkey '^P' up-line-or-history
@@ -83,29 +86,6 @@ bindkey '^A' beginning-of-line
 bindkey '^E' end-of-line
 bindkey '^F' forward-char
 bindkey '^B' backward-char
-
-
-# set up completion
-# ------------------------------------------------------------------------------
-# load zutil to be able to use zstyle
-autoload -U zutil
-
-# TODO: fix the insecure directories stuff
-# initialize completion system
-# compinit -i ignores insecure directories by default
-# compinit -u uses insecure directories by default
-autoload -U compinit -i
-
-# set location for compinit's dumpfile
-# given path has to exist
-compinit -d "$zsh_temp_path/.zcompdump"
-
-# use cache for completion
-zstyle ':completion:*' use-cache on
-zstyle ':completion:*' cache-path $zsh_temp_path/cache
-
-## case-insensitive (all), partial-word and then substring completion
-zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*' verbose yes
 
 
 # set up command history
@@ -133,3 +113,29 @@ HISTFILE="$zsh_temp_path/.zsh_history"
 
 # max number of history lines saved
 SAVEHIST=$HISTSIZE
+
+
+# set up completion
+# ------------------------------------------------------------------------------
+# problems with insecure directories under macOS?
+# -> see https://stackoverflow.com/a/13785716/149220 for a solution
+
+# set location for compinit's dumpfile
+# given path has to exist
+compinit -d "$zsh_temp_path/.zcompdump"
+
+# use cache for completion
+zstyle ':completion:*' use-cache on
+zstyle ':completion:*' cache-path $zsh_temp_path/cache
+
+## case-insensitive (all), partial-word and then substring completion
+#zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*' verbose yes
+
+# these were created by compinstall
+zstyle ':completion:*' completer _complete _ignored _approximate
+zstyle ':completion:*' matcher-list 'm:{[:lower:]}={[:upper:]} r:|[._-]=* r:|=*' 'm:{[:lower:]}={[:upper:]}' 'm:{[:lower:]}={[:upper:]}' 'm:{[:lower:]}={[:upper:]}'
+zstyle ':completion:*' max-errors 2
+zstyle :compinstall filename '/Users/mplusp/.zshrc'
+
+# initialize completion system
+autoload -Uz compinit && compinit
