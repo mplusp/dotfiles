@@ -42,15 +42,15 @@ fi
 
 
 # create relevant symlinks to module payload
-target="$payload_path/.zsh"
+target="$payload_path/zsh"
 symlink="$HOME/.zsh"
 create_symlink "$target" "$symlink"
 
-target="$payload_path/.zsh/.zshenv"
+target="$payload_path/zsh/zshenv"
 symlink="$HOME/.zshenv"
 create_symlink "$target" "$symlink"
 
-target="$payload_path/.zsh/.zshrc"
+target="$payload_path/zsh/zshrc"
 symlink="$HOME/.zshrc"
 create_symlink "$target" "$symlink"
 
