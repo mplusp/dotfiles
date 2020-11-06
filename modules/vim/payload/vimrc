@@ -38,9 +38,6 @@ Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
 
-" vim-plug - LaTeX
-Plug 'lervag/vimtex'
-
 " List ends here. Plugins become visible to Vim after this call.
 call plug#end()
 
