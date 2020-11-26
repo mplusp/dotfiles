@@ -190,6 +190,7 @@ zinit ice depth=1; zinit light romkatv/powerlevel10k
 
 # Go
 export GOPATH=$HOME/go
+export GOBIN=$GOPATH/bin
 export GOROOT="$(brew --prefix golang)/libexec"
 export PATH="$PATH:${GOPATH}/bin:${GOROOT}/bin"
 
