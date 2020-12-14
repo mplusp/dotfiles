@@ -25,3 +25,9 @@ function mkcd() {
 function ff() {
   find . -name "$1" -print
 }
+
+# 'awsvnctunnel ip' creates an ssh tunnel to my aws ec2 instance for vnc on port 5901
+
+function awsvnctunnel() {
+  ssh -L 5901:"$1":5901 -i "~/.ssh/soa20" ubuntu@"$1"
+}
