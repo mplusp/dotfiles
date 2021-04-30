@@ -165,6 +165,7 @@ autoload -Uz _zinit
 # Load a few important annexes, without Turbo
 # (this is currently required for annexes)
 zinit light-mode for \
+    zinit-zsh/z-a-rust \
     zinit-zsh/z-a-as-monitor \
     zinit-zsh/z-a-patch-dl \
     zinit-zsh/z-a-bin-gem-node
@@ -172,14 +173,14 @@ zinit light-mode for \
 ### End of Zinit's installer chunk
 
 # Example Minimal Setup
-# https://zdharma.org/zinit/wiki/Example-Minimal-Setup/
+# https://zdharma.github.io/zinit/wiki/Example-Minimal-Setup/
 zinit wait lucid light-mode for \
   atinit"zicompinit; zicdreplay" \
       zdharma/fast-syntax-highlighting \
   atload"_zsh_autosuggest_start" \
       zsh-users/zsh-autosuggestions \
   blockf atpull'zinit creinstall -q .' \
-      zinit light zsh-users/zsh-completions
+      zsh-users/zsh-completions
 
 # ZSH Theme
 # Powerlevel10k
