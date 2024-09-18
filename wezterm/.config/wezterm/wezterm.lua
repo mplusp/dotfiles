@@ -33,6 +33,17 @@ config.keys = {
     mods = 'CTRL|SHIFT',
     action = wezterm.action.QuickSelect,
   },
+  -- Disable some keybinds for 'act.SpawnWindow'
+  {
+    key = 'N',
+    mods = 'CTRL|SHIFT',
+    action = wezterm.action.DisableDefaultAssignment,
+  },
+  {
+    key = 'n',
+    mods = 'CTRL|SHIFT',
+    action = wezterm.action.DisableDefaultAssignment,
+  },
 }
 
 -- Return config to WezTerm
