@@ -1,0 +1,152 @@
+# Run SketchyBar and JankyBorders together with AeroSpace.
+after-startup-command = [
+	'exec-and-forget LANG="en_US.UTF-8" /opt/homebrew/opt/sketchybar/bin/sketchybar',
+	'exec-and-forget LANG="en_US.UTF-8" /opt/homebrew/opt/borders/bin/borders'
+]
+
+# Notify Sketchybar about workspace change
+exec-on-workspace-change = ['/bin/bash', '-c',
+    '/opt/homebrew/opt/sketchybar/bin/sketchybar --trigger aerospace_workspace_change FOCUSED_WORKSPACE=$AEROSPACE_FOCUSED_WORKSPACE'
+]
+
+# Mouse follows to focused monitor
+on-focused-monitor-changed = ['move-mouse monitor-lazy-center']
+
+# Start AeroSpace at login
+start-at-login = true
+
+# Enable normalizations.
+# See: https://nikitabobko.github.io/AeroSpace/guide#normalization
+enable-normalization-flatten-containers = true
+enable-normalization-opposite-orientation-for-nested-containers = true
+
+# Disable accordion padding
+accordion-padding = 0
+
+# Possible values: tiles|accordion
+default-root-container-layout = 'tiles'
+
+# Possible values: horizontal|vertical|auto
+# 'auto' means: wide monitor (anything wider than high) gets horizontal orientation,
+#               tall monitor (anything higher than wide) gets vertical orientation
+default-root-container-orientation = 'auto'
+
+# Gaps between windows (inner-*) and between monitor edges (outer-*).
+# Possible values:
+# - Constant:     gaps.outer.top = 8
+# - Per monitor:  gaps.outer.top = [{ monitor.main = 16 }, { monitor."some-pattern" = 32 }, 24]
+#                 In this example, 24 is a default value when there is no match.
+#                 Monitor pattern is the same as for 'workspace-to-monitor-force-assignment'.
+#                 See: https://nikitabobko.github.io/AeroSpace/guide#assign-workspaces-to-monitors
+[gaps]
+inner.horizontal = 0
+inner.vertical =   0
+outer.top =     [{ monitor.'built-in.*' = 10 }, { monitor.'dell.*' = 42 }, 42]
+outer.right =      0
+outer.bottom =     0
+outer.left =       0
+
+[[on-window-detected]]
+if.app-id = 'pl.maketheweb.cleanshotx'
+check-further-callbacks = true
+run = 'layout floating'
+
+# 'main' binding mode must be always presented
+[mode.main.binding]
+
+# Open/focus apps via keybinds
+cmd-alt-ctrl-shift-b = 'exec-and-forget open -a "Brave Browser.app"'
+cmd-alt-ctrl-shift-d = 'exec-and-forget open -a "IntelliJ IDEA Ultimate.app"'
+cmd-alt-ctrl-shift-t = 'exec-and-forget open -a "WezTerm.app"'
+cmd-alt-ctrl-shift-z = 'exec-and-forget open -a "Obsidian.app"'
+cmd-alt-ctrl-shift-r = 'exec-and-forget open -a "Microsoft Remote Desktop.app"'
+cmd-alt-ctrl-shift-c = 'exec-and-forget open -a "Slack.app"'
+cmd-alt-ctrl-shift-w = 'exec-and-forget open -a "Microsoft Teams.app"'
+cmd-alt-ctrl-shift-s = 'exec-and-forget open -a "Spotify.app"'
+
+# Switch between layouts
+cmd-alt-ctrl-shift-v = 'layout tiles horizontal vertical'
+cmd-alt-ctrl-shift-g = 'layout accordion horizontal vertical'
+
+# Switch windows in and out of the tiling layout
+cmd-alt-ctrl-shift-f = 'layout floating tiling'
+
+# Make windows fullscreen
+cmd-alt-ctrl-shift-m = 'fullscreen'
+
+# Switch window focus
+cmd-alt-ctrl-shift-n = 'focus left --boundaries-action stop'
+cmd-alt-ctrl-shift-e = 'focus down --boundaries-action stop'
+cmd-alt-ctrl-shift-i = 'focus up --boundaries-action stop'
+cmd-alt-ctrl-shift-o = 'focus right --boundaries-action stop'
+
+# Switch display focus
+cmd-alt-ctrl-shift-j = 'focus-monitor left'
+cmd-alt-ctrl-shift-u = 'focus-monitor down'
+cmd-alt-ctrl-shift-y = 'focus-monitor up'
+cmd-alt-ctrl-shift-quote = 'focus-monitor right'
+
+# Switch workspaces
+cmd-alt-ctrl-shift-1 = 'workspace 1'
+cmd-alt-ctrl-shift-2 = 'workspace 2'
+cmd-alt-ctrl-shift-3 = 'workspace 3'
+cmd-alt-ctrl-shift-4 = 'workspace 4'
+cmd-alt-ctrl-shift-5 = 'workspace 5'
+cmd-alt-ctrl-shift-6 = 'workspace 6'
+cmd-alt-ctrl-shift-7 = 'workspace 7'
+cmd-alt-ctrl-shift-8 = 'workspace 8'
+cmd-alt-ctrl-shift-9 = 'workspace 9'
+
+# Move windows/nodes to other workspaces
+cmd-alt-ctrl-shift-f1 = 'move-node-to-workspace 1'
+cmd-alt-ctrl-shift-f2 = 'move-node-to-workspace 2'
+cmd-alt-ctrl-shift-f3 = 'move-node-to-workspace 3'
+cmd-alt-ctrl-shift-f4 = 'move-node-to-workspace 4'
+cmd-alt-ctrl-shift-f5 = 'move-node-to-workspace 5'
+cmd-alt-ctrl-shift-f6 = 'move-node-to-workspace 6'
+cmd-alt-ctrl-shift-f7 = 'move-node-to-workspace 7'
+cmd-alt-ctrl-shift-f8 = 'move-node-to-workspace 8'
+cmd-alt-ctrl-shift-f9 = 'move-node-to-workspace 9'
+
+# Switch focus between the two last used workspaces
+cmd-alt-ctrl-shift-space = 'workspace-back-and-forth'
+
+# Move workspace to next display
+cmd-alt-ctrl-shift-tab = 'move-workspace-to-monitor --wrap-around next'
+
+# See: https://nikitabobko.github.io/AeroSpace/commands#move
+cmd-alt-ctrl-shift-left = 'move left'
+cmd-alt-ctrl-shift-down = 'move down'
+cmd-alt-ctrl-shift-up = 'move up'
+cmd-alt-ctrl-shift-right = 'move right'
+
+# Enter meta mode
+cmd-alt-ctrl-shift-q = 'mode meta'
+
+# meta binding mode
+[mode.meta.binding]
+
+# Make switching window focus also available in meta mode
+cmd-alt-ctrl-shift-n = 'focus left --boundaries-action stop'
+cmd-alt-ctrl-shift-e = 'focus down --boundaries-action stop'
+cmd-alt-ctrl-shift-i = 'focus up --boundaries-action stop'
+cmd-alt-ctrl-shift-o = 'focus right --boundaries-action stop'
+
+# Move windows to other nodes
+cmd-alt-ctrl-shift-left = 'join-with left'
+cmd-alt-ctrl-shift-down = 'join-with down'
+cmd-alt-ctrl-shift-up = 'join-with up'
+cmd-alt-ctrl-shift-right = 'join-with right'
+
+# Resize windows
+n = 'resize width +50'
+e = 'resize height +50'
+i = 'resize height -50'
+o = 'resize width -50'
+
+# Reset layout
+r = ['flatten-workspace-tree', 'mode main']
+c = ['reload-config', 'mode main']
+backspace = ['close-all-windows-but-current', 'mode main']
+esc = 'mode main'
+
