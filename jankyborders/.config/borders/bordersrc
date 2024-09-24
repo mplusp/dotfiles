@@ -1,0 +1,58 @@
+#!/usr/bin/env bash
+
+# AppleAccentColor is an int, mapped to some color values.
+# Approximate the colors these ints represent with following hex values:
+GRAPHITE="0xffd3d3d3"
+RED=0xffcd143c
+ORANGE=0xffffas500
+YELLOW=0xffffd700
+GREEN=0xff008000
+BLUE="0xff4682b4"
+PURPLE=0xff9370db
+PINK=0xffff1493
+MULTICOLOR=$BLUE
+
+# Use the color selected in the Appearance settings as the active color 
+case $(defaults read -g AppleAccentColor) in
+	-1)
+		MACOS_ACCENT_COLOR=$GRAPHITE
+		;;
+	0)
+		MACOS_ACCENT_COLOR=$RED
+		;;
+	1)
+		MACOS_ACCENT_COLOR=$ORANGE
+		;;
+	2)
+		MACOS_ACCENT_COLOR=$YELLOW
+		;;
+	3)
+		MACOS_ACCENT_COLOR=$GREEN
+		;;
+	4)
+		MACOS_ACCENT_COLOR=$BLUE
+		;;
+	5)
+		MACOS_ACCENT_COLOR=$PURPLE
+		;;
+	6)
+		MACOS_ACCENT_COLOR=$PINK
+		;;
+	*)
+		MACOS_ACCENT_COLOR=$MULTICOLOR
+		;;
+esac
+
+# Use a fully transparent color as the inactive color
+TRANSPARENT=0x00000000
+
+options=(
+	style=round
+	width=4.0
+	hidpi=off
+	active_color=$MACOS_ACCENT_COLOR
+	inactive_color=$TRANSPARENT
+)
+
+borders "${options[@]}"
+
