@@ -1,6 +1,6 @@
 -- Helper function:
 -- returns color scheme dependant on operating system theme setting (dark/light)
-function color_scheme_for_appearance(appearance)
+local function color_scheme_for_appearance(appearance)
   if appearance:find "Dark" then
     return "Tokyo Night"
   else
@@ -27,22 +27,12 @@ config.native_macos_fullscreen_mode = false
 
 -- Keybindings
 config.keys = {
-  -- Default QuickSelect keybind gets captured by something else on my system
+  -- Default QuickSelect keybind (CTRL-SHIFT-Space) gets captured by something
+  -- else on my system
   {
-    key = 'a',
+    key = 'A',
     mods = 'CTRL|SHIFT',
     action = wezterm.action.QuickSelect,
-  },
-  -- Disable some keybinds for 'act.SpawnWindow'
-  {
-    key = 'N',
-    mods = 'CTRL|SHIFT',
-    action = wezterm.action.DisableDefaultAssignment,
-  },
-  {
-    key = 'n',
-    mods = 'CTRL|SHIFT',
-    action = wezterm.action.DisableDefaultAssignment,
   },
 }
 
