@@ -34,6 +34,15 @@ config.keys = {
     mods = 'CTRL|SHIFT',
     action = wezterm.action.QuickSelect,
   },
+  -- Quickly open config file with common macOS keybind
+  {
+    key = ',',
+    mods = 'SUPER',
+    action = wezterm.action.SpawnCommandInNewWindow({
+      cwd = os.getenv 'WEZTERM_CONFIG_DIR',
+      args = { os.getenv 'SHELL', '-c', '$VISUAL $WEZTERM_CONFIG_FILE' },
+    }),
+  },
 }
 
 -- Return config to WezTerm
