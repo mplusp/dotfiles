@@ -86,11 +86,8 @@ autoload -Uz compinit && compinit -d "$cache_directory/compinit-dumpfile"
 # Set Up Plugins
 # ------------------------------------------------------------------------------
 source "$ZDOTDIR/plugin_helper.zsh"
-plugins=( \
-  "zsh-users/zsh-syntax-highlighting" \
-  "zsh-users/zsh-autosuggestions" \
-)
-_init_plugins "${plugins[@]}"
+plugins=( zsh-users/zsh-syntax-highlighting zsh-users/zsh-autosuggestions )
+__init_plugins "${plugins[@]}"
 
 # Starship
 # ------------------------------------------------------------------------------
