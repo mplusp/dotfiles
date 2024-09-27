@@ -114,7 +114,7 @@ cmd-alt-ctrl-shift-space = 'workspace-back-and-forth'
 # Move workspace to next display
 cmd-alt-ctrl-shift-tab = 'move-workspace-to-monitor --wrap-around next'
 
-# See: https://nikitabobko.github.io/AeroSpace/commands#move
+# Move windows in the given direction
 cmd-alt-ctrl-shift-left = 'move left'
 cmd-alt-ctrl-shift-down = 'move down'
 cmd-alt-ctrl-shift-up = 'move up'
@@ -131,6 +131,12 @@ cmd-alt-ctrl-shift-n = 'focus left --boundaries-action stop'
 cmd-alt-ctrl-shift-e = 'focus down --boundaries-action stop'
 cmd-alt-ctrl-shift-i = 'focus up --boundaries-action stop'
 cmd-alt-ctrl-shift-o = 'focus right --boundaries-action stop'
+
+# Make moving windows in the given direction also available in meta mode
+cmd-alt-ctrl-shift-left = 'move left'
+cmd-alt-ctrl-shift-down = 'move down'
+cmd-alt-ctrl-shift-up = 'move up'
+cmd-alt-ctrl-shift-right = 'move right'
 
 # Move windows to other nodes
 left = 'join-with left'
