@@ -2,15 +2,15 @@
 
 # AppleAccentColor is an int, mapped to some color values.
 # Approximate the colors these ints represent with following hex values:
-GRAPHITE="0xffd3d3d3"
-RED=0xffcd143c
-ORANGE=0xffffas500
-YELLOW=0xffffd700
-GREEN=0xff008000
-BLUE="0xff4682b4"
-PURPLE=0xff9370db
-PINK=0xffff1493
-MULTICOLOR=$BLUE
+GRAPHITE="0xff757575"
+RED="0xffff5258"
+ORANGE="0xfff8821c"
+YELLOW="0xfffec700"
+GREEN="0xff62ba46"
+BLUE="0xff007aff"
+PURPLE="0xffa550a7"
+PINK="0xfff84f9f"
+MULTICOLOR="$BLUE"
 
 # Use the color selected in the Appearance settings as the active color 
 case $(defaults read -g AppleAccentColor) in
@@ -43,15 +43,12 @@ case $(defaults read -g AppleAccentColor) in
 		;;
 esac
 
-# Use a fully transparent color as the inactive color
-TRANSPARENT=0x00000000
-
 options=(
 	style=round
-	width=4.0
+	width=6.0
 	hidpi=off
 	active_color=$MACOS_ACCENT_COLOR
-	inactive_color=$TRANSPARENT
+	inactive_color=$GRAPHITE
 )
 
 borders "${options[@]}"
