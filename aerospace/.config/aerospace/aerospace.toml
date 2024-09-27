@@ -133,10 +133,10 @@ cmd-alt-ctrl-shift-i = 'focus up --boundaries-action stop'
 cmd-alt-ctrl-shift-o = 'focus right --boundaries-action stop'
 
 # Move windows to other nodes
-cmd-alt-ctrl-shift-left = 'join-with left'
-cmd-alt-ctrl-shift-down = 'join-with down'
-cmd-alt-ctrl-shift-up = 'join-with up'
-cmd-alt-ctrl-shift-right = 'join-with right'
+left = 'join-with left'
+down = 'join-with down'
+up = 'join-with up'
+right = 'join-with right'
 
 # Resize windows
 n = 'resize width +50'
