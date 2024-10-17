@@ -104,7 +104,9 @@ alias lg="lazygit"
 
 # Homebrew (brew.sh)
 # ------------------------------------------------------------------------------
-eval "$(/opt/homebrew/bin/brew shellenv)"
+if [[ -e "/opt/homebrew/bin/brew" ]]; then
+  eval "$(/opt/homebrew/bin/brew shellenv)"
+fi
 
 ## Brew completions
 if type brew &>/dev/null
