@@ -58,7 +58,7 @@ setopt HIST_VERIFY
 HISTSIZE=25000
 
 # Set up history file
-HISTFILE="$XDG_STATE_HOME/zsh/history"
+HISTFILE="$XDG_DATA_HOME/zsh/history"
 
 ## Max number of history lines saved in history file
 SAVEHIST=200000
