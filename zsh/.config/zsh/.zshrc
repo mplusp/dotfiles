@@ -58,6 +58,9 @@ setopt HIST_VERIFY
 HISTSIZE=25000
 
 # Set up history file
+if [[ ! -d "$XDG_DATA_HOME/zsh" ]]; then
+  mkdir -p "$XDG_DATA_HOME/zsh"
+fi
 HISTFILE="$XDG_DATA_HOME/zsh/history"
 
 ## Max number of history lines saved in history file
