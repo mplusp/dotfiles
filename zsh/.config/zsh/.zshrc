@@ -94,8 +94,10 @@ __init_plugins "${plugins[@]}"
 
 # Starship
 # ------------------------------------------------------------------------------
-eval "$(starship init zsh)"
-
+if type starship &>/dev/null; then
+  eval "$(starship init zsh)"
+fi
+#
 # Git and LazyGit
 # ------------------------------------------------------------------------------
 ## Aliases
@@ -112,8 +114,7 @@ if [[ -e "/opt/homebrew/bin/brew" ]]; then
 fi
 
 ## Brew completions
-if type brew &>/dev/null
-then
+if type brew &>/dev/null; then
   FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
   autoload -Uz compinit
   compinit -d "$cache_directory/compinit-dumpfile"
@@ -121,26 +122,32 @@ fi
 
 # fzf
 # ------------------------------------------------------------------------------
-eval "$(fzf --zsh)"
+if type fzf &>/dev/null; then
+  eval "$(fzf --zsh)"
+fi
 
 # zoxide (better `cd`)
 # ------------------------------------------------------------------------------
-eval "$(zoxide init zsh --cmd cd)"
+if type zoxide &>/dev/null; then
+  eval "$(zoxide init zsh --cmd cd)"
+fi
 
 # eza (better `ls`)
 # ------------------------------------------------------------------------------
-alias l="eza --icons"
-alias ls="eza --icons"
-alias ll="eza -lg --icons"
-alias la="eza -lag --icons"
-alias lt="eza -lTg --icons"
-alias lt1="eza -lTg --level=1 --icons"
-alias lt2="eza -lTg --level=2 --icons"
-alias lt3="eza -lTg --level=3 --icons"
-alias lta="eza -lTag --icons"
-alias lta1="eza -lTag --level=1 --icons"
-alias lta2="eza -lTag --level=2 --icons"
-alias lta3="eza -lTag --level=3 --icons"
+if type eza &>/dev/null; then
+  alias l="eza --icons"
+  alias ls="eza --icons"
+  alias ll="eza -lg --icons"
+  alias la="eza -lag --icons"
+  alias lt="eza -lTg --icons"
+  alias lt1="eza -lTg --level=1 --icons"
+  alias lt2="eza -lTg --level=2 --icons"
+  alias lt3="eza -lTg --level=3 --icons"
+  alias lta="eza -lTag --icons"
+  alias lta1="eza -lTag --level=1 --icons"
+  alias lta2="eza -lTag --level=2 --icons"
+  alias lta3="eza -lTag --level=3 --icons"
+fi
 
 # Other aliases
 # ------------------------------------------------------------------------------
