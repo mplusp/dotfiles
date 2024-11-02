@@ -24,6 +24,6 @@ return {
     vim.keymap.set('n', '<leader>fb', builtin.buffers, { desc = 'Telescope buffers' })
     vim.keymap.set('n', '<leader>fr', builtin.oldfiles, { desc = 'Telescope oldfiles' })
     vim.keymap.set('n', '<leader>fh', builtin.help_tags, { desc = 'Telescope help tags' })
-    vim.keymap.set('n', '<leader>bb', builtin.builtin, { desc = 'Telescope builtin pickers' })
+    vim.keymap.set('n', '<leader>fbi', builtin.builtin, { desc = 'Telescope builtin pickers' })
   end
 }
