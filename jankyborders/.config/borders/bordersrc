@@ -45,7 +45,7 @@ esac
 
 options=(
 	style=round
-	width=6.0
+	width=8.0
 	hidpi=off
 	active_color=$MACOS_ACCENT_COLOR
 	inactive_color=$GRAPHITE
