@@ -1,14 +1,14 @@
 # Run SketchyBar and JankyBorders together with AeroSpace.
 after-startup-command = [
-	'exec-and-forget LANG="en_US.UTF-8" /opt/homebrew/opt/sketchybar/bin/sketchybar',
-	'exec-and-forget LANG="en_US.UTF-8" /opt/homebrew/opt/borders/bin/borders'
+	'exec-and-forget sketchybar',
+	'exec-and-forget borders'
 ]
 
 # Notify Sketchybar about workspace change
 exec-on-workspace-change = [
   '/bin/bash',
   '-c',
-  '/opt/homebrew/opt/sketchybar/bin/sketchybar --trigger aerospace_workspace_change FOCUSED_WORKSPACE=$AEROSPACE_FOCUSED_WORKSPACE'
+  'sketchybar --trigger aerospace_workspace_change FOCUSED_WORKSPACE=$AEROSPACE_FOCUSED_WORKSPACE'
 ]
 
 # Mouse follows to focused monitor
