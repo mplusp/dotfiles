@@ -1,0 +1,66 @@
+#!/usr/bin/env bash
+
+# Color palette (values from Tokyonight Night variant, names modified).
+# Ordered from dark shades to light shades within on color.
+black="0xff15161e"
+
+blue4="0xff1a1b26"
+blue8="0xff292e42"
+blue7="0xff394b70"
+blue3="0xff565f89"
+blue0="0xff3d59a1"
+blue="0xff7aa2f7"
+blue2="0xff0db9d7"
+blue5="0xff89ddff"
+blue6="0xffb4f9f8"
+
+cyan="0xff7dcfff"
+
+dark="0xff16161e"
+dark3="0xff545c7e"
+dark5="0xff737aa2"
+
+green="0xff9ece6a"
+green1="0xff73daca"
+green2="0xff41a6b5"
+
+magenta="0xffbb9af7"
+magenta2="0xffff007c"
+
+orange="0xffff9e64"
+
+purple="0xff9d7cd8"
+
+red="0xfff7768e"
+red1="0xffdb4b4b"
+
+teal="0xff1abc9c"
+teal2="0xff27a1b9"
+teal1="0xff2ac3de"
+
+yellow="0xffe0af68"
+
+transparent="0x00000000"
+
+# Colors
+BAR_COLOR="$transparent"
+LABEL_COLOR="$blue"
+LABEL_HIGHLIGHT_COLOR="$purple"
+BACKGROUND_COLOR="$blue7"
+BACKGROUND_BORDER_COLOR="$purple"
+
+FRONT_APP_LABEL_COLOR="$blue7"
+FRONT_APP_BACKGROUND_COLOR="$blue"
+
+# Dimensions
+BAR_POSITION="top"
+BAR_HEIGHT=22
+BAR_PADDING=24
+BACKGROUND_CORNER_RADIUS=4
+BACKGROUND_HEIGHT=22
+BRACKET_BACKGROUND_CORNER_RADIUS=12
+LABEL_Y_OFFSET=1
+LABEL_PADDING=6
+
+# Fonts
+LABEL_FONT="JetBrainsMono Nerd Font:Regular:14.0"

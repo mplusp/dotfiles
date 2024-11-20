@@ -1,48 +1,127 @@
+#!/usr/bin/env bash
+
 PLUGIN_DIR="$CONFIG_DIR/plugins"
 
+# Load theme variables.
+source "$CONFIG_DIR/theme"
+
 # Configure general bar appearance.
-sketchybar --bar position=top height=40 blur_radius=30 color=0x40000000
+bar=(
+    position="$BAR_POSITION"
+    height="$BAR_HEIGHT"
+    color="$BAR_COLOR"
+    border_color="$BAR_BORDER_COLOR"
+    padding_left="$BAR_PADDING"
+    padding_right="$BAR_PADDING"
+)
+sketchybar --bar "${bar[@]}"
 
 # Configure default values for later defined items.
 default=(
-  padding_left=5
-  padding_right=5
-  icon.font="JetBrainsMono Nerd Font:Bold:17.0"
-  label.font="JetBrainsMono Nerd Font:Bold:14.0"
-  icon.color=0xffffffff
-  label.color=0xffffffff
-  icon.padding_left=4
-  icon.padding_right=4
-  label.padding_left=4
-  label.padding_right=4
+  height="$BRACKET_HEIGHT"
+  y_offset="$Y_OFFSET"
+  background.color="$BACKGROUND_COLOR"
+  background.border_color="$BACKGROUND_BORDER_COLOR"
+  background.corner_radius="$BACKGROUND_CORNER_RADIUS"
+  background.height="$BACKGROUND_HEIGHT"
+  icon.drawing=off
+  label.font="$LABEL_FONT"
+  label.color="$LABEL_COLOR"
+  label.highlight_color="$LABEL_HIGHLIGHT_COLOR"
+  label.y_offset="$LABEL_Y_OFFSET"
+  label.padding_left="$LABEL_PADDING"
+  label.padding_right="$LABEL_PADDING"
 )
 sketchybar --default "${default[@]}"
 
-# Add AeroSpace related event.
-sketchybar --add event aerospace_workspace_change
 
-# Add AeroSpace workspace indicators to left side of the bar.
-# Override defaults, if necessary.
+# AeroSpace events
+sketchybar --add event aerospace_workspace_change
+sketchybar --add event aerospace_meta_mode_enabled_changed
+
+# AeroSpace workspace and meta mode indicators
+sketchybar --add item workspaces_spacer_left left \
+           --set      workspaces_spacer_left \
+                      padding_left=4
+
+# TODO: get rid of no longer existing workspaces somehow
 for sid in $(aerospace list-workspaces --all); do
-    sketchybar --add item space.$sid left \
-        --subscribe space.$sid aerospace_workspace_change \
-        --set space.$sid \
-        background.color=0x44ffffff \
-        background.corner_radius=5 \
-        background.height=20 \
-        background.drawing=off \
-        label="$sid" \
-        click_script="aerospace workspace $sid" \
-        script="$CONFIG_DIR/plugins/aerospace.sh $sid"
+    sketchybar --add item  workspace.$sid left \
+               --subscribe workspace.$sid aerospace_workspace_change \
+               --set       workspace.$sid \
+                           label="$sid" \
+                           click_script="aerospace workspace $sid" \
+                           script="$PLUGIN_DIR/aerospace $sid"
 done
 
-# Add item that displays currently focured app.
-sketchybar --add item chevron left \
-           --set chevron icon= label.drawing=off \
-           --add item front_app left \
-           --set front_app icon.drawing=off script="$PLUGIN_DIR/front_app.sh" \
-           --subscribe front_app front_app_switched
+sketchybar --add item  meta left \
+           --subscribe meta aerospace_meta_mode_enabled_changed \
+           --set       meta label.drawing=off \
+                            label="m" \
+                            script="$PLUGIN_DIR/aerospace $AEROSPACE_META_MODE_ENABLED"
+
+sketchybar --add item workspaces_spacer_right left \
+           --set      workspaces_spacer_right \
+                      padding_right=4
+
+
+sketchybar --add bracket workspaces workspaces_spacer_left meta /workspace\.*/ workspaces_spacer_right \
+           --set         workspaces \
+                         background.corner_radius="$BRACKET_BACKGROUND_CORNER_RADIUS"
+
+# Spacer between brackets
+sketchybar --add item bracket_spacer left \
+           --set      bracket_spacer \
+                      background.drawing=off
+
+# Front App
+sketchybar --add item front_app_spacer_left left \
+           --set      front_app_spacer_left \
+                      background.drawing=off
+
+sketchybar --add item  front_app left \
+           --subscribe front_app front_app_switched \
+           --set       front_app \
+                       background.color="$FRONT_APP_BACKGROUND_COLOR" \
+                       label.color="$FRONT_APP_LABEL_COLOR" \
+                       label.padding_left=0 \
+                       label.padding_right=0 \
+                       script="$PLUGIN_DIR/front_app"
+
+sketchybar --add item front_app_spacer_right left \
+           --set      front_app_spacer_right \
+                      background.drawing=off
+
+sketchybar --add bracket front_app_bracket front_app_spacer_left front_app front_app_spacer_right \
+           --set         front_app_bracket \
+                         background.color="$FRONT_APP_BACKGROUND_COLOR" \
+                         background.corner_radius="$BRACKET_BACKGROUND_CORNER_RADIUS"
+
+# Clock
+sketchybar --add item clock_spacer_right right \
+           --set      clock_spacer_right \
+                      background.drawing=off
+
+sketchybar --add item clock right \
+           --set      clock \
+                      label.padding_left=0 \
+                      label.padding_right=0 \
+                      update_freq=10 \
+                      script="$PLUGIN_DIR/clock"
+
+sketchybar --add item clock_spacer_left right \
+           --set      clock_spacer_left \
+                      background.drawing=off
+
+sketchybar --add bracket clock_bracket clock_spacer_left clock clock_spacer_right \
+           --set         clock_bracket \
+                         background.corner_radius="$BRACKET_BACKGROUND_CORNER_RADIUS"
+
+# Automatically apply configuration changes
+sketchybar --hotload on
 
 # Force all scripts to run the first time (never do this in a script)
 sketchybar --update
 
+# Initialize focused workspace
+sketchybar --trigger aerospace_workspace_change FOCUSED_WORKSPACE=$(aerospace list-workspaces --focused)
