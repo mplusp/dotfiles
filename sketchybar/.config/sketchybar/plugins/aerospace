@@ -1,21 +1,29 @@
 #!/usr/bin/env bash
 
+source "$CONFIG_DIR/theme"
+
 if [ "$SENDER" = "aerospace_meta_mode_enabled_changed" ]; then
   if [ "$AEROSPACE_META_MODE_ENABLED" = true ]; then
-    sketchybar --set meta background.border_width=1 \
-                          label.highlight=on
+    sketchybar --set meta \
+                          background.border_width="$WORKSPACE_BACKGROUND_BORDER_WIDTH" \
+                          label.drawing=on
   else
-    sketchybar --set meta background.border_width=0 \
-                          label.highlight=off
+    sketchybar --set meta \
+                          background.border_width=0 \
+                          label.drawing=off
   fi
 fi
 
 if [ "$SENDER" = "aerospace_workspace_change" ]; then
   if [ "$1" = "$FOCUSED_WORKSPACE" ]; then
-    sketchybar --set $NAME background.border_width=1 \
+    sketchybar --set $NAME \
+                           background.drawing=on \
+                           background.border_width="$WORKSPACE_BACKGROUND_BORDER_WIDTH" \
                            label.highlight=on
   else
-    sketchybar --set $NAME background.border_width=0 \
+    sketchybar --set $NAME \
+                           background.drawing=off \
+                           background.border_width=0 \
                            label.highlight=off
   fi
 fi

@@ -9,10 +9,14 @@ source "$CONFIG_DIR/theme"
 bar=(
     position="$BAR_POSITION"
     height="$BAR_HEIGHT"
+    y_offset="$BAR_Y_OFFSET"
     color="$BAR_COLOR"
     border_color="$BAR_BORDER_COLOR"
     padding_left="$BAR_PADDING"
     padding_right="$BAR_PADDING"
+    corner_radius="$BAR_CORNER_RADIUS"
+    margin="$BAR_MARGIN"
+    blur_radius="$BAR_BLUR_RADIUS"
 )
 sketchybar --bar "${bar[@]}"
 
@@ -34,7 +38,6 @@ default=(
 )
 sketchybar --default "${default[@]}"
 
-
 # AeroSpace events
 sketchybar --add event aerospace_workspace_change
 sketchybar --add event aerospace_meta_mode_enabled_changed
@@ -42,14 +45,16 @@ sketchybar --add event aerospace_meta_mode_enabled_changed
 # AeroSpace workspace and meta mode indicators
 sketchybar --add item workspaces_spacer_left left \
            --set      workspaces_spacer_left \
+                      background.drawing=off \
                       padding_left=4
 
-# TODO: get rid of no longer existing workspaces somehow
 for sid in $(aerospace list-workspaces --all); do
     sketchybar --add item  workspace.$sid left \
                --subscribe workspace.$sid aerospace_workspace_change \
                --set       workspace.$sid \
                            label="$sid" \
+                           label.highlight_color="$WORKSPACE_LABEL_HIGHLIGHT_COLOR" \
+                           background.border_color="$WORKSPACE_BACKGROUND_BORDER_COLOR" \
                            click_script="aerospace workspace $sid" \
                            script="$PLUGIN_DIR/aerospace $sid"
 done
@@ -58,16 +63,18 @@ sketchybar --add item  meta left \
            --subscribe meta aerospace_meta_mode_enabled_changed \
            --set       meta label.drawing=off \
                             label="m" \
+                            background.border_color="$WORKSPACE_BACKGROUND_BORDER_COLOR" \
                             script="$PLUGIN_DIR/aerospace $AEROSPACE_META_MODE_ENABLED"
 
 sketchybar --add item workspaces_spacer_right left \
            --set      workspaces_spacer_right \
+                      background.drawing=off \
                       padding_right=4
-
 
 sketchybar --add bracket workspaces workspaces_spacer_left meta /workspace\.*/ workspaces_spacer_right \
            --set         workspaces \
-                         background.corner_radius="$BRACKET_BACKGROUND_CORNER_RADIUS"
+                         background.corner_radius="$BRACKET_BACKGROUND_CORNER_RADIUS" \
+                         background.border_width="$BRACKET_BACKGROUND_BORDER_WIDTH"
 
 # Spacer between brackets
 sketchybar --add item bracket_spacer left \
@@ -82,7 +89,7 @@ sketchybar --add item front_app_spacer_left left \
 sketchybar --add item  front_app left \
            --subscribe front_app front_app_switched \
            --set       front_app \
-                       background.color="$FRONT_APP_BACKGROUND_COLOR" \
+                       background.drawing=off \
                        label.color="$FRONT_APP_LABEL_COLOR" \
                        label.padding_left=0 \
                        label.padding_right=0 \
@@ -95,7 +102,8 @@ sketchybar --add item front_app_spacer_right left \
 sketchybar --add bracket front_app_bracket front_app_spacer_left front_app front_app_spacer_right \
            --set         front_app_bracket \
                          background.color="$FRONT_APP_BACKGROUND_COLOR" \
-                         background.corner_radius="$BRACKET_BACKGROUND_CORNER_RADIUS"
+                         background.corner_radius="$BRACKET_BACKGROUND_CORNER_RADIUS" \
+                         background.border_width="$BRACKET_BACKGROUND_BORDER_WIDTH"
 
 # Clock
 sketchybar --add item clock_spacer_right right \
@@ -104,6 +112,7 @@ sketchybar --add item clock_spacer_right right \
 
 sketchybar --add item clock right \
            --set      clock \
+                      background.drawing=off \
                       label.padding_left=0 \
                       label.padding_right=0 \
                       update_freq=10 \
@@ -115,7 +124,8 @@ sketchybar --add item clock_spacer_left right \
 
 sketchybar --add bracket clock_bracket clock_spacer_left clock clock_spacer_right \
            --set         clock_bracket \
-                         background.corner_radius="$BRACKET_BACKGROUND_CORNER_RADIUS"
+                         background.corner_radius="$BRACKET_BACKGROUND_CORNER_RADIUS" \
+                         background.border_width="$BRACKET_BACKGROUND_BORDER_WIDTH"
 
 # Automatically apply configuration changes
 sketchybar --hotload on
