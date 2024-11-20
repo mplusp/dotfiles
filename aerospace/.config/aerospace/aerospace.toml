@@ -56,6 +56,9 @@ if.app-id = 'pl.maketheweb.cleanshotx'
 check-further-callbacks = true
 run = 'layout floating'
 
+[workspace-to-monitor-force-assignment]
+9 = 'secondary'
+
 # 'main' binding mode must be always presented
 [mode.main.binding]
 
