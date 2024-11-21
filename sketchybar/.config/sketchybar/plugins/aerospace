@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
-source "$CONFIG_DIR/theme"
+source "$CONFIG_DIR/environment"
+source "$THEME_DIR/tokyonight"
 
 if [ "$SENDER" = "aerospace_meta_mode_enabled_changed" ]; then
   if [ "$AEROSPACE_META_MODE_ENABLED" = true ]; then

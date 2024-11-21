@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 
-PLUGIN_DIR="$CONFIG_DIR/plugins"
+source "$CONFIG_DIR/environment"
 
 # Load theme variables.
-source "$CONFIG_DIR/theme"
+source "$THEME_DIR/tokyonight"
 
 # Configure general bar appearance.
 bar=(
@@ -22,7 +22,7 @@ sketchybar --bar "${bar[@]}"
 
 # Configure default values for later defined items.
 default=(
-  height="$BRACKET_HEIGHT"
+  height="$BACKGROUND_HEIGHT"
   y_offset="$Y_OFFSET"
   background.color="$BACKGROUND_COLOR"
   background.border_color="$BACKGROUND_BORDER_COLOR"
@@ -38,43 +38,9 @@ default=(
 )
 sketchybar --default "${default[@]}"
 
-# AeroSpace events
-sketchybar --add event aerospace_workspace_change
-sketchybar --add event aerospace_meta_mode_enabled_changed
+# Left items
 
-# AeroSpace workspace and meta mode indicators
-sketchybar --add item workspaces_spacer_left left \
-           --set      workspaces_spacer_left \
-                      background.drawing=off \
-                      padding_left=4
-
-for sid in $(aerospace list-workspaces --all); do
-    sketchybar --add item  workspace.$sid left \
-               --subscribe workspace.$sid aerospace_workspace_change \
-               --set       workspace.$sid \
-                           label="$sid" \
-                           label.highlight_color="$WORKSPACE_LABEL_HIGHLIGHT_COLOR" \
-                           background.border_color="$WORKSPACE_BACKGROUND_BORDER_COLOR" \
-                           click_script="aerospace workspace $sid" \
-                           script="$PLUGIN_DIR/aerospace $sid"
-done
-
-sketchybar --add item  meta left \
-           --subscribe meta aerospace_meta_mode_enabled_changed \
-           --set       meta label.drawing=off \
-                            label="m" \
-                            background.border_color="$WORKSPACE_BACKGROUND_BORDER_COLOR" \
-                            script="$PLUGIN_DIR/aerospace $AEROSPACE_META_MODE_ENABLED"
-
-sketchybar --add item workspaces_spacer_right left \
-           --set      workspaces_spacer_right \
-                      background.drawing=off \
-                      padding_right=4
-
-sketchybar --add bracket workspaces workspaces_spacer_left meta /workspace\.*/ workspaces_spacer_right \
-           --set         workspaces \
-                         background.corner_radius="$BRACKET_BACKGROUND_CORNER_RADIUS" \
-                         background.border_width="$BRACKET_BACKGROUND_BORDER_WIDTH"
+source "$ITEM_DIR/aerospace"
 
 # Spacer between brackets
 sketchybar --add item bracket_spacer left \
