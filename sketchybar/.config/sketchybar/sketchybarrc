@@ -1,29 +1,25 @@
 #!/usr/bin/env bash
 
 source "$CONFIG_DIR/environment"
-
-# Load theme variables.
 source "$THEME_DIR/tokyonight"
 
 # Configure general bar appearance.
 bar=(
-    position="$BAR_POSITION"
-    height="$BAR_HEIGHT"
-    y_offset="$BAR_Y_OFFSET"
-    color="$BAR_COLOR"
+    blur_radius="$BAR_BLUR_RADIUS"
     border_color="$BAR_BORDER_COLOR"
+    color="$BAR_COLOR"
+    corner_radius="$BAR_CORNER_RADIUS"
+    height="$BAR_HEIGHT"
+    margin="$BAR_MARGIN"
+    position="$BAR_POSITION"
     padding_left="$BAR_PADDING"
     padding_right="$BAR_PADDING"
-    corner_radius="$BAR_CORNER_RADIUS"
-    margin="$BAR_MARGIN"
-    blur_radius="$BAR_BLUR_RADIUS"
+    y_offset="$BAR_Y_OFFSET"
 )
 sketchybar --bar "${bar[@]}"
 
 # Configure default values for later defined items.
 default=(
-  height="$BACKGROUND_HEIGHT"
-  y_offset="$Y_OFFSET"
   background.color="$BACKGROUND_COLOR"
   background.border_color="$BACKGROUND_BORDER_COLOR"
   background.corner_radius="$BACKGROUND_CORNER_RADIUS"
@@ -35,63 +31,17 @@ default=(
   label.y_offset="$LABEL_Y_OFFSET"
   label.padding_left="$LABEL_PADDING"
   label.padding_right="$LABEL_PADDING"
+  y_offset="$Y_OFFSET"
 )
 sketchybar --default "${default[@]}"
 
-# Left items
-
+# Left
 source "$ITEM_DIR/aerospace"
+source "$ITEM_DIR/spacer"
+source "$ITEM_DIR/front_app"
 
-# Spacer between brackets
-sketchybar --add item bracket_spacer left \
-           --set      bracket_spacer \
-                      background.drawing=off
-
-# Front App
-sketchybar --add item front_app_spacer_left left \
-           --set      front_app_spacer_left \
-                      background.drawing=off
-
-sketchybar --add item  front_app left \
-           --subscribe front_app front_app_switched \
-           --set       front_app \
-                       background.drawing=off \
-                       label.color="$FRONT_APP_LABEL_COLOR" \
-                       label.padding_left=0 \
-                       label.padding_right=0 \
-                       script="$PLUGIN_DIR/front_app"
-
-sketchybar --add item front_app_spacer_right left \
-           --set      front_app_spacer_right \
-                      background.drawing=off
-
-sketchybar --add bracket front_app_bracket front_app_spacer_left front_app front_app_spacer_right \
-           --set         front_app_bracket \
-                         background.color="$FRONT_APP_BACKGROUND_COLOR" \
-                         background.corner_radius="$BRACKET_BACKGROUND_CORNER_RADIUS" \
-                         background.border_width="$BRACKET_BACKGROUND_BORDER_WIDTH"
-
-# Clock
-sketchybar --add item clock_spacer_right right \
-           --set      clock_spacer_right \
-                      background.drawing=off
-
-sketchybar --add item clock right \
-           --set      clock \
-                      background.drawing=off \
-                      label.padding_left=0 \
-                      label.padding_right=0 \
-                      update_freq=10 \
-                      script="$PLUGIN_DIR/clock"
-
-sketchybar --add item clock_spacer_left right \
-           --set      clock_spacer_left \
-                      background.drawing=off
-
-sketchybar --add bracket clock_bracket clock_spacer_left clock clock_spacer_right \
-           --set         clock_bracket \
-                         background.corner_radius="$BRACKET_BACKGROUND_CORNER_RADIUS" \
-                         background.border_width="$BRACKET_BACKGROUND_BORDER_WIDTH"
+# Right
+source "$ITEM_DIR/clock"
 
 # Automatically apply configuration changes
 sketchybar --hotload on

@@ -6,25 +6,24 @@ source "$THEME_DIR/tokyonight"
 if [ "$SENDER" = "aerospace_meta_mode_enabled_changed" ]; then
   if [ "$AEROSPACE_META_MODE_ENABLED" = true ]; then
     sketchybar --set meta \
-                          background.border_width="$WORKSPACE_BACKGROUND_BORDER_WIDTH" \
-                          label.drawing=on
+                     background.drawing=on \
+                     label.drawing=on
   else
     sketchybar --set meta \
-                          background.border_width=0 \
-                          label.drawing=off
+                     background.drawing=off \
+                     label.drawing=off
   fi
 fi
 
 if [ "$SENDER" = "aerospace_workspace_change" ]; then
   if [ "$1" = "$FOCUSED_WORKSPACE" ]; then
     sketchybar --set $NAME \
-                           background.drawing=on \
-                           background.border_width="$WORKSPACE_BACKGROUND_BORDER_WIDTH" \
-                           label.highlight=on
+                     background.drawing=on \
+                     label.highlight=on
   else
     sketchybar --set $NAME \
-                           background.drawing=off \
-                           background.border_width=0 \
-                           label.highlight=off
+                     background.drawing=off \
+                     background.border_width=0 \
+                     label.highlight=off
   fi
 fi
