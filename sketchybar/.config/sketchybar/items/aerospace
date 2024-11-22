@@ -4,7 +4,7 @@ source "$CONFIG_DIR/environment"
 source "$THEME_DIR/tokyonight"
 
 # Colors
-BACKGROUND_COLOR="$blue"
+BACKGROUND_COLOR="$magenta2"
 LABEL_HIGHLIGHT_COLOR="$blue7"
 
 sketchybar --add event aerospace_workspace_change
