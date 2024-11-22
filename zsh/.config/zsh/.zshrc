@@ -22,7 +22,7 @@ bindkey '^R' history-incremental-search-backward
 ## Bind C-S to search forward in all modes
 bindkey '^S' history-incremental-search-forward
 
-## History expansion on space 
+## History expansion on space
 bindkey ' ' magic-space
 
 ## Bind history navigation to C-P and C-N in all modes
@@ -162,18 +162,16 @@ fi
 # eza (better `ls`)
 # ------------------------------------------------------------------------------
 if type eza &>/dev/null; then
-  alias l="eza --icons"
-  alias ls="eza --icons"
-  alias ll="eza -lg --icons"
-  alias la="eza -lag --icons"
-  alias lt="eza -lTg --icons"
-  alias lt1="eza -lTg --level=1 --icons"
-  alias lt2="eza -lTg --level=2 --icons"
-  alias lt3="eza -lTg --level=3 --icons"
-  alias lta="eza -lTag --icons"
-  alias lta1="eza -lTag --level=1 --icons"
-  alias lta2="eza -lTag --level=2 --icons"
-  alias lta3="eza -lTag --level=3 --icons"
+  alias l="eza --icons=always"
+  alias ls="eza --icons=always"
+  alias ll="eza -lg --icons=always"
+  alias la="eza -lag --icons=always"
+  alias lt="eza -lTg --icons=always"
+  alias lt2="eza -lTg --level=2 --icons=always"
+  alias lt3="eza -lTg --level=3 --icons=always"
+  alias lta="eza -lTag --icons=always"
+  alias lta2="eza -lTag --level=2 --icons=always"
+  alias lta3="eza -lTag --level=3 --icons=always"
 fi
 
 # Other aliases
@@ -181,4 +179,3 @@ fi
 alias vim="nvim"
 alias vi="nvim"
 alias n="nvim"
-
