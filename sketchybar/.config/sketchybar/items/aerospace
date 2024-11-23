@@ -19,6 +19,7 @@ for sid in $(aerospace list-workspaces --all); do
                            background.drawing=off \
                            click_script="aerospace workspace $sid" \
                            label="$sid" \
+                           label.width="25" \
                            script="$PLUGIN_DIR/aerospace $sid"
 done
 
