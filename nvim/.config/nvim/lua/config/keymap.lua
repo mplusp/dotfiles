@@ -6,6 +6,13 @@ vim.keymap.set({'n', 'x'}, '<Up>', 'gk', { desc = 'Navigate up (visual line)' })
 vim.keymap.set('i', '<Down>', '<C-\\><C-o>gj', { desc = 'Navigate down (visual line)' })
 vim.keymap.set('i', '<Up>', '<C-\\><C-o>gk', { desc = 'Navigate up (visual line)' })
 
+-- Move Lines
+vim.keymap.set({'n', 'x'}, '<M-S-Up>', ':move -2<cr>', { desc = 'Move Line Up' })
+vim.keymap.set({'n', 'x'}, '<M-S-Down>', ':move +1<cr>', { desc = 'Move Line Down' })
+vim.keymap.set('i', '<M-S-Up>', '<C-o>:move -2<cr>', { desc = 'Move Line Up' })
+vim.keymap.set('i', '<M-S-Down>', '<C-o>:move +1<cr>', { desc = 'Move Line Down' })
+
+
 -- Easier saving
 vim.keymap.set('n', '<leader>w', ':write<cr>', { desc = 'Save'} )
 
