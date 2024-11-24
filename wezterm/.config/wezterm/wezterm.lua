@@ -41,7 +41,7 @@ if wezterm.config_builder then
 end
 
 -- Appearance
-config.font_size = 14.0
+config.font_size = 24.0
 config.color_scheme = color_scheme_for_appearance(wezterm.gui.get_appearance())
 config.window_background_opacity = window_background_opacity
 config.macos_window_background_blur = 10
