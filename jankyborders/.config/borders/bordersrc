@@ -9,7 +9,7 @@ options=(
 	inactive_color="$blue"
 	hidpi=on
 	style=round
-	width=6.0
+	width=10.0
 )
 
 borders "${options[@]}"

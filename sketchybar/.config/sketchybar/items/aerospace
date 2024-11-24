@@ -11,7 +11,7 @@ create_workspace_bracket_for_monitor() {
   if [ $monitor_id -eq 1 ]; then
     sketchybar --add item workspaces_spacer_left left \
                --set      workspaces_spacer_left \
-                          width=4 \
+                          width=16 \
                           background.drawing=off \
                           label.drawing=off
   fi
@@ -48,7 +48,7 @@ create_workspace_bracket_for_monitor() {
 
     sketchybar --add item workspaces_spacer_right left \
                --set      workspaces_spacer_right \
-                          width=4 \
+                          width=16 \
                           background.drawing=off \
                           label.drawing=off
   fi

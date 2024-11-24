@@ -91,7 +91,6 @@ autoload -Uz compinit && compinit -d "$cache_directory/compinit-dumpfile"
 source "$ZDOTDIR/plugin_helper.zsh"
 plugins=(
   zsh-users/zsh-syntax-highlighting
-  zsh-users/zsh-autosuggestions
   Aloxaf/fzf-tab
 )
 __init_plugins "${plugins[@]}"

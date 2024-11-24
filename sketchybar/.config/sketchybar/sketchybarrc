@@ -42,9 +42,6 @@ source "$ITEM_DIR/aerospace"
 source "$ITEM_DIR/spacer"
 source "$ITEM_DIR/front_app"
 
-# Right
-source "$ITEM_DIR/clock"
-
 # Automatically apply configuration changes
 sketchybar --hotload on
 
