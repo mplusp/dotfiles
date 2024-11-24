@@ -7,7 +7,7 @@ vim.keymap.set('i', '<Down>', '<C-\\><C-o>gj', { desc = 'Navigate down (visual l
 vim.keymap.set('i', '<Up>', '<C-\\><C-o>gk', { desc = 'Navigate up (visual line)' })
 
 -- Easier saving
-vim.keymap.set('n', '<leader>w', '<cmd>write<cr>', { desc = 'Save'} )
+vim.keymap.set('n', '<leader>w', ':write<cr>', { desc = 'Save'} )
 
 -- Easier interaction with the system clipboard
 vim.keymap.set({'n', 'x'}, '<leader>y', '"+y', { desc = 'Copy to system clipboard' })
@@ -16,5 +16,5 @@ vim.keymap.set({'n', 'x'}, '<leader>P', '"+P', { desc = 'Paste from system clipb
 
 -- Navigating buffers
 vim.keymap.set('n', '<leader>bb', '<C-^>', { desc = 'Switch to alternate buffer' })
-vim.keymap.set('n', '<leader>bn', '<cmd>bnext<cr>', { desc = 'Next buffer' })
-vim.keymap.set('n', '<leader>bp', '<cmd>bprevious<cr>', { desc = 'Previous buffer' })
+vim.keymap.set('n', '<leader>bn', ':bnext<cr>', { desc = 'Next buffer' })
+vim.keymap.set('n', '<leader>bp', ':bprevious<cr>', { desc = 'Previous buffer' })
