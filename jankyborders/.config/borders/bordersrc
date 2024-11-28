@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
 
 # Colors taken from tokyonight theme
-magenta2="0xffff007c"
+red="0xfff7768e"
 blue="0xff7aa2f7"
 
 options=(
-	active_color="$magenta2"
+	active_color="$red"
 	inactive_color="$blue"
 	hidpi=on
 	style=round

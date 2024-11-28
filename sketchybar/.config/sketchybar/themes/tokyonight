@@ -1,48 +1,18 @@
 #!/usr/bin/env bash
 
-# Color palette (values from Tokyonight Night variant, names modified).
-# Ordered from dark shades to light shades within on color.
-really_black="0xff000000"
-blurred_black="0x4415161e"
-black="0xff15161e"
-
-blue4="0xff1a1b26"
-blue8="0xff292e42"
-blue7="0xff394b70"
-blue3="0xff565f89"
-blue0="0xff3d59a1"
+# Tokyonight Night Palette
+black="0xff24283b"
 blue="0xff7aa2f7"
-blue2="0xff0db9d7"
-blue5="0xff89ddff"
-blue6="0xffb4f9f8"
-
+blue1="0xff1a1b26"
 cyan="0xff7dcfff"
-
-dark="0xff16161e"
-dark3="0xff545c7e"
-dark5="0xff737aa2"
-
 green="0xff9ece6a"
-green1="0xff73daca"
-green2="0xff41a6b5"
-
 magenta="0xffbb9af7"
-magenta2="0xffff007c"
-
 orange="0xffff9e64"
-
 purple="0xff9d7cd8"
-
 red="0xfff7768e"
-red1="0xffdb4b4b"
-
-teal="0xff1abc9c"
-teal2="0xff27a1b9"
-teal1="0xff2ac3de"
-
-yellow="0xffe0af68"
-
 transparent="0x00000000"
+white="0xffa9b1d6"
+yellow="0xffe0af68"
 
 # Bar
 ## Colors
@@ -59,12 +29,12 @@ BAR_MARGIN=21
 
 # Item Defaults
 ## Colors
-BACKGROUND_COLOR="$blue7"
+BACKGROUND_COLOR="$blue1"
 BACKGROUND_BORDER_COLOR="$blue"
 BACKGROUND_BORDER_WIDTH=0
 LABEL_ALIGN="center"
 LABEL_COLOR="$blue"
-LABEL_HIGHLIGHT_COLOR="$magenta2"
+LABEL_HIGHLIGHT_COLOR="$red"
 
 ## Fonts
 ICON_BASE_FONT="SF Pro"
