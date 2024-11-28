@@ -4,7 +4,7 @@ source "$CONFIG_DIR/environment"
 source "$THEME_DIR/tokyonight"
 
 sketchybar --add event aerospace_workspace_change
-sketchybar --add event aerospace_meta_mode_enabled_changed
+sketchybar --add event aerospace_service_mode_enabled_changed
 
 sketchybar --add item workspaces_spacer_left left \
            --set      workspaces_spacer_left \
@@ -23,16 +23,16 @@ for sid in $(aerospace list-workspaces --all); do
                            script="$PLUGIN_DIR/aerospace $sid"
 done
 
-sketchybar --add item  meta left \
-           --subscribe meta aerospace_meta_mode_enabled_changed \
-           --set       meta \
-                            background.drawing=off \
-                            label.drawing=off \
-                            label.highlight=on \
-                            label.font="$LABEL_HIGHLIGHT_FONT" \
-                            label="[m]" \
-                            label.padding_left=0 \
-                            script="$PLUGIN_DIR/aerospace $AEROSPACE_META_MODE_ENABLED"
+sketchybar --add item  service_mode left \
+           --subscribe service_mode aerospace_service_mode_enabled_changed \
+           --set       service_mode \
+                       background.drawing=off \
+                       label.drawing=off \
+                       label.highlight=on \
+                       label.font="$LABEL_HIGHLIGHT_FONT" \
+                       label="[s]" \
+                       label.padding_left=0 \
+                       script="$PLUGIN_DIR/aerospace $AEROSPACE_SERVICE_MODE_ENABLED"
 
 sketchybar --add item workspaces_spacer_right left \
            --set      workspaces_spacer_right \
@@ -40,7 +40,7 @@ sketchybar --add item workspaces_spacer_right left \
                       background.drawing=off \
                       width=7
 
-sketchybar --add bracket workspaces workspaces_spacer_left /workspace\.*/ meta workspaces_spacer_right \
+sketchybar --add bracket workspaces workspaces_spacer_left /workspace\.*/ service_mode workspaces_spacer_right \
            --set         workspaces \
                          background.corner_radius="$BRACKET_BACKGROUND_CORNER_RADIUS" \
                          background.border_width="$BRACKET_BACKGROUND_BORDER_WIDTH"

@@ -59,10 +59,10 @@ run = 'layout floating'
 [workspace-to-monitor-force-assignment]
 9 = 'secondary'
 
-# 'main' binding mode must be always presented
+# main mode bindings (have to be there)
 [mode.main.binding]
 
-# Open/focus apps via keybinds
+# Open/focus apps using keybinds
 cmd-alt-ctrl-shift-b = 'exec-and-forget open -a "Brave Browser.app"'
 cmd-alt-ctrl-shift-d = 'exec-and-forget open -a "IntelliJ IDEA Ultimate.app"'
 cmd-alt-ctrl-shift-t = 'exec-and-forget open -a "WezTerm.app"'
@@ -128,22 +128,22 @@ cmd-alt-ctrl-shift-down = 'move down'
 cmd-alt-ctrl-shift-up = 'move up'
 cmd-alt-ctrl-shift-right = 'move right'
 
-# Enter meta mode
+# Enter service mode
 cmd-alt-ctrl-shift-q = [
-  'mode meta',
-  'exec-and-forget sketchybar --trigger aerospace_meta_mode_enabled_changed AEROSPACE_META_MODE_ENABLED=true',
+  'mode service',
+  'exec-and-forget sketchybar --trigger aerospace_service_mode_enabled_changed AEROSPACE_SERVICE_MODE_ENABLED=true',
 ]
 
-# meta binding mode
-[mode.meta.binding]
+# service mode bindings
+[mode.service.binding]
 
-# Make switching window focus also available in meta mode
+# Make switching window focus also available in service mode
 cmd-alt-ctrl-shift-n = 'focus left --boundaries-action stop'
 cmd-alt-ctrl-shift-e = 'focus down --boundaries-action stop'
 cmd-alt-ctrl-shift-i = 'focus up --boundaries-action stop'
 cmd-alt-ctrl-shift-o = 'focus right --boundaries-action stop'
 
-# Make moving windows in the given direction also available in meta mode
+# Make moving windows in the given direction also available in service mode
 cmd-alt-ctrl-shift-left = 'move left'
 cmd-alt-ctrl-shift-down = 'move down'
 cmd-alt-ctrl-shift-up = 'move up'
@@ -165,20 +165,20 @@ o = 'resize width -50'
 r = [
   'flatten-workspace-tree',
   'mode main',
-  'exec-and-forget sketchybar --trigger aerospace_meta_mode_enabled_changed AEROSPACE_META_MODE_ENABLED=false',
+  'exec-and-forget sketchybar --trigger aerospace_service_mode_enabled_changed AEROSPACE_SERVICE_MODE_ENABLED=false',
 ]
 c = [
   'reload-config',
   'mode main',
-  'exec-and-forget sketchybar --trigger aerospace_meta_mode_enabled_changed AEROSPACE_META_MODE_ENABLED=false',
+  'exec-and-forget sketchybar --trigger aerospace_service_mode_enabled_changed AEROSPACE_SERVICE_MODE_ENABLED=false',
 ]
 backspace = [
   'close-all-windows-but-current',
   'mode main',
-  'exec-and-forget sketchybar --trigger aerospace_meta_mode_enabled_changed AEROSPACE_META_MODE_ENABLED=false',
+  'exec-and-forget sketchybar --trigger aerospace_service_mode_enabled_changed AEROSPACE_SERVICE_MODE_ENABLED=false',
 ]
 esc = [
   'mode main',
-  'exec-and-forget sketchybar --trigger aerospace_meta_mode_enabled_changed AEROSPACE_META_MODE_ENABLED=false',
+  'exec-and-forget sketchybar --trigger aerospace_service_mode_enabled_changed AEROSPACE_SERVICE_MODE_ENABLED=false',
 ]
 
