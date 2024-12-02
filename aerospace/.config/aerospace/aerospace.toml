@@ -1,8 +1,16 @@
+after-login-command = []
+
 # Run SketchyBar and JankyBorders together with AeroSpace.
 after-startup-command = [
 	'exec-and-forget sketchybar',
 	'exec-and-forget borders'
 ]
+
+# Start AeroSpace at login
+start-at-login = true
+
+# Mouse follows to focused monitor
+on-focused-monitor-changed = ['move-mouse monitor-lazy-center']
 
 # Notify Sketchybar about workspace change
 exec-on-workspace-change = [
@@ -11,19 +19,13 @@ exec-on-workspace-change = [
   'sketchybar --trigger aerospace_workspace_change FOCUSED_WORKSPACE=$AEROSPACE_FOCUSED_WORKSPACE'
 ]
 
-# Mouse follows to focused monitor
-on-focused-monitor-changed = ['move-mouse monitor-lazy-center']
-
-# Start AeroSpace at login
-start-at-login = true
-
 # Enable normalizations.
 # See: https://nikitabobko.github.io/AeroSpace/guide#normalization
 enable-normalization-flatten-containers = true
 enable-normalization-opposite-orientation-for-nested-containers = true
 
-# Disable accordion padding
-accordion-padding = 0
+# See: https://nikitabobko.github.io/AeroSpace/guide#layouts
+accordion-padding = 48
 
 # Possible values: tiles|accordion
 default-root-container-layout = 'tiles'
@@ -84,10 +86,10 @@ cmd-alt-ctrl-shift-m = 'fullscreen'
 cmd-alt-ctrl-shift-k = 'macos-native-fullscreen'
 
 # Switch window focus
-cmd-alt-ctrl-shift-n = 'focus left --boundaries-action stop'
-cmd-alt-ctrl-shift-e = 'focus down --boundaries-action stop'
-cmd-alt-ctrl-shift-i = 'focus up --boundaries-action stop'
-cmd-alt-ctrl-shift-o = 'focus right --boundaries-action stop'
+cmd-alt-ctrl-shift-n = 'focus left'
+cmd-alt-ctrl-shift-e = 'focus down'
+cmd-alt-ctrl-shift-i = 'focus up'
+cmd-alt-ctrl-shift-o = 'focus right'
 
 # Switch display focus
 cmd-alt-ctrl-shift-j = 'focus-monitor left'
@@ -139,10 +141,10 @@ cmd-alt-ctrl-shift-q = [
 [mode.service.binding]
 
 # Make switching window focus also available in service mode
-cmd-alt-ctrl-shift-n = 'focus left --boundaries-action stop'
-cmd-alt-ctrl-shift-e = 'focus down --boundaries-action stop'
-cmd-alt-ctrl-shift-i = 'focus up --boundaries-action stop'
-cmd-alt-ctrl-shift-o = 'focus right --boundaries-action stop'
+cmd-alt-ctrl-shift-n = 'focus left'
+cmd-alt-ctrl-shift-e = 'focus down'
+cmd-alt-ctrl-shift-i = 'focus up'
+cmd-alt-ctrl-shift-o = 'focus right'
 
 # Make moving windows in the given direction also available in service mode
 cmd-alt-ctrl-shift-left = 'move left'
