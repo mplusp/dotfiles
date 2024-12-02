@@ -2,7 +2,7 @@
 local wezterm = require 'wezterm'
 
 -- Utility functions
-local window_background_opacity = 0.95
+local window_background_opacity = 0.9
 local function toggle_window_background_opacity(window)
     local overrides = window:get_config_overrides() or {}
     if not overrides.window_background_opacity then
