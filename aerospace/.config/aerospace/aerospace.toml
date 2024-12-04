@@ -153,16 +153,16 @@ cmd-alt-ctrl-shift-up = 'move up'
 cmd-alt-ctrl-shift-right = 'move right'
 
 # Move windows to other nodes
-left = 'join-with left'
-down = 'join-with down'
-up = 'join-with up'
-right = 'join-with right'
+n = 'join-with left'
+e = 'join-with down'
+i = 'join-with up'
+o = 'join-with right'
 
 # Resize windows
-n = 'resize width +50'
-e = 'resize height +50'
-i = 'resize height -50'
-o = 'resize width -50'
+left = 'resize width -50'
+down = 'resize height -50'
+up = 'resize height +50'
+right = 'resize width +50'
 
 # Reset layout
 r = [
