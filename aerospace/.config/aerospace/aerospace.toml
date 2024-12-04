@@ -85,7 +85,8 @@ cmd-alt-ctrl-shift-f = 'layout floating tiling'
 
 # Make windows fullscreen
 cmd-alt-ctrl-shift-m = 'fullscreen'
-cmd-alt-ctrl-shift-k = 'macos-native-fullscreen'
+cmd-alt-ctrl-shift-k = 'fullscreen --no-outer-gaps'
+cmd-alt-ctrl-shift-enter = 'macos-native-fullscreen'
 
 # Switch window focus
 cmd-alt-ctrl-shift-n = 'focus left'
