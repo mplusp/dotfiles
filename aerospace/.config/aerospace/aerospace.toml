@@ -59,6 +59,8 @@ check-further-callbacks = true
 run = 'layout floating'
 
 [workspace-to-monitor-force-assignment]
+7 = 'secondary'
+8 = 'secondary'
 9 = 'secondary'
 
 # main mode bindings (have to be there)
