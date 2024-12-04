@@ -5,10 +5,10 @@ source "$THEME_DIR/tokyonight"
 
 if [ "$SENDER" = "aerospace_service_mode_enabled_changed" ]; then
   if [ "$AEROSPACE_SERVICE_MODE_ENABLED" = true ]; then
-    sketchybar --set service_mode \
+    sketchybar --set workspaces_service_mode \
                      label.drawing=on
   else
-    sketchybar --set service_mode \
+    sketchybar --set workspaces_service_mode \
                      label.drawing=off
   fi
 fi
