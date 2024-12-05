@@ -1,5 +1,17 @@
+# AeroSpace tries to find the custom config in two locations:
+# ~/.aerospace.toml
+# ${XDG_CONFIG_HOME}/aerospace/aerospace.toml
+# (environment variable XDG_CONFIG_HOME fallbacks to ~/.config if the variable
+# is not presented)
+
+# You can use it to add commands that run after login to macOS user session.
+# 'start-at-login' needs to be 'true' for 'after-login-command' to work
+# Available commands: https://nikitabobko.github.io/AeroSpace/commands
 after-login-command = []
 
+# You can use it to add commands that run after AeroSpace startup.
+# 'after-startup-command' is run after 'after-login-command'
+# Available commands : https://nikitabobko.github.io/AeroSpace/commands
 # Run SketchyBar and JankyBorders together with AeroSpace.
 after-startup-command = [
 	'exec-and-forget sketchybar',
@@ -9,21 +21,12 @@ after-startup-command = [
 # Start AeroSpace at login
 start-at-login = true
 
-# Mouse follows to focused monitor
-on-focused-monitor-changed = ['move-mouse monitor-lazy-center']
-
-# Notify Sketchybar about workspace change
-exec-on-workspace-change = [
-  '/bin/bash',
-  '-c',
-  'sketchybar --trigger aerospace_workspace_change FOCUSED_WORKSPACE=$AEROSPACE_FOCUSED_WORKSPACE'
-]
-
-# Enable normalizations.
+# Normalizations.
 # See: https://nikitabobko.github.io/AeroSpace/guide#normalization
 enable-normalization-flatten-containers = true
 enable-normalization-opposite-orientation-for-nested-containers = true
 
+# Set to 0 to disable the padding feature
 # See: https://nikitabobko.github.io/AeroSpace/guide#layouts
 accordion-padding = 48
 
@@ -35,6 +38,29 @@ default-root-container-layout = 'tiles'
 #               tall monitor (anything higher than wide) gets vertical orientation
 default-root-container-orientation = 'auto'
 
+# Mouse follows focus when focused monitor changes
+# See https://nikitabobko.github.io/AeroSpace/guide#on-focus-changed-callbacks
+# See https://nikitabobko.github.io/AeroSpace/commands#move-mouse
+# Fallback value (if you omit the key): on-focused-monitor-changed = []
+on-focused-monitor-changed = ['move-mouse monitor-lazy-center']
+
+# exec-on-workspace-change callback allows to run arbitrary process when focused
+# workspace changes. It may be useful for integrating with bars.
+# Besides the exec.env-vars, the process has access to the following environment variables:
+# AEROSPACE_FOCUSED_WORKSPACE - the workspace user switched to
+# AEROSPACE_PREV_WORKSPACE - the workspace user switched from
+# Notify Sketchybar about workspace change
+exec-on-workspace-change = [
+  '/bin/bash',
+  '-c',
+  'sketchybar --trigger aerospace_workspace_change FOCUSED_WORKSPACE=$AEROSPACE_FOCUSED_WORKSPACE'
+]
+
+# You can effectively turn off macOS "Hide application" (cmd-h) feature by toggling this flag
+# Useful if you don't use this macOS feature, but accidentally hit cmd-h or cmd-alt-h key
+# Also see: https://nikitabobko.github.io/AeroSpace/goodies#disable-hide-app
+automatically-unhide-macos-hidden-apps = false
+
 # Gaps between windows (inner-*) and between monitor edges (outer-*).
 # Possible values:
 # - Constant:     gaps.outer.top = 8
@@ -43,30 +69,44 @@ default-root-container-orientation = 'auto'
 #                 Monitor pattern is the same as for 'workspace-to-monitor-force-assignment'.
 #                 See: https://nikitabobko.github.io/AeroSpace/guide#assign-workspaces-to-monitors
 [gaps]
-inner.horizontal = 24
-inner.vertical =   24
 outer.top =     [
-  { monitor.'built-in.*' = 16 }, # offset of 32 on internal display, because of notch (16" MPB)
+  # offset of 32 on internal display, because of notch (16" MPB)
+  { monitor.'built-in.*' = 16 },
   48
 ]
 outer.right =      24
 outer.bottom =     24
 outer.left =       24
+inner.horizontal = 24
+inner.vertical =   24
 
-[[on-window-detected]]
-if.app-id = 'pl.maketheweb.cleanshotx'
-check-further-callbacks = true
-run = 'layout floating'
-
+# Assign certain workspaces to
+# See: https://nikitabobko.github.io/AeroSpace/guide#assign-workspaces-to-monitors
 [workspace-to-monitor-force-assignment]
 7 = 'secondary'
 8 = 'secondary'
 9 = 'secondary'
 
-# main mode bindings (have to be there)
+# Float CleanShot X windows by default
+# See: https://nikitabobko.github.io/AeroSpace/guide#on-window-detected-callback
+[[on-window-detected]]
+if.app-id = 'pl.maketheweb.cleanshotx'
+check-further-callbacks = true
+run = 'layout floating'
+
+# Possible values: (qwerty|dvorak)
+# See https://nikitabobko.github.io/AeroSpace/guide#key-mapping
+[key-mapping]
+preset = 'qwerty'
+
+# 'main' binding mode declaration
+# See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
+# 'main' binding mode must be always presented
+# Fallback value (if you omit the key): mode.main.binding = {}
 [mode.main.binding]
 
 # Open/focus apps using keybinds
+# See: https://nikitabobko.github.io/AeroSpace/commands#exec-and-forget
 cmd-alt-ctrl-shift-b = 'exec-and-forget open -a "Brave Browser.app"'
 cmd-alt-ctrl-shift-d = 'exec-and-forget open -a "IntelliJ IDEA Ultimate.app"'
 cmd-alt-ctrl-shift-t = 'exec-and-forget open -a "WezTerm.app"'
@@ -77,30 +117,43 @@ cmd-alt-ctrl-shift-w = 'exec-and-forget open -a "Microsoft Teams.app"'
 cmd-alt-ctrl-shift-s = 'exec-and-forget open -a "Spotify.app"'
 
 # Switch between layouts
+# See: https://nikitabobko.github.io/AeroSpace/commands#layout
 cmd-alt-ctrl-shift-v = 'layout tiles horizontal vertical'
 cmd-alt-ctrl-shift-g = 'layout accordion horizontal vertical'
 
-# Switch windows in and out of the tiling layout
+# Toggle windows in and out of the tiling layout/floating
+# See: https://nikitabobko.github.io/AeroSpace/commands#layout
 cmd-alt-ctrl-shift-f = 'layout floating tiling'
 
 # Make windows fullscreen
+# See: https://nikitabobko.github.io/AeroSpace/commands#fullscreen
 cmd-alt-ctrl-shift-m = 'fullscreen'
 cmd-alt-ctrl-shift-k = 'fullscreen --no-outer-gaps'
 cmd-alt-ctrl-shift-enter = 'macos-native-fullscreen'
 
 # Switch window focus
+# See: https://nikitabobko.github.io/AeroSpace/commands#focus
 cmd-alt-ctrl-shift-n = 'focus left'
 cmd-alt-ctrl-shift-e = 'focus down'
 cmd-alt-ctrl-shift-i = 'focus up'
 cmd-alt-ctrl-shift-o = 'focus right'
 
+# Move windows in the given direction
+# See: https://nikitabobko.github.io/AeroSpace/commands#move
+cmd-alt-ctrl-shift-left = 'move left'
+cmd-alt-ctrl-shift-down = 'move down'
+cmd-alt-ctrl-shift-up = 'move up'
+cmd-alt-ctrl-shift-right = 'move right'
+
 # Switch display focus
+# See: https://nikitabobko.github.io/AeroSpace/commands#focus-monitor
 cmd-alt-ctrl-shift-j = 'focus-monitor left'
 cmd-alt-ctrl-shift-u = 'focus-monitor down'
 cmd-alt-ctrl-shift-y = 'focus-monitor up'
 cmd-alt-ctrl-shift-quote = 'focus-monitor right'
 
 # Switch workspaces
+# See: https://nikitabobko.github.io/AeroSpace/commands#workspace
 cmd-alt-ctrl-shift-1 = 'workspace 1'
 cmd-alt-ctrl-shift-2 = 'workspace 2'
 cmd-alt-ctrl-shift-3 = 'workspace 3'
@@ -112,6 +165,7 @@ cmd-alt-ctrl-shift-8 = 'workspace 8'
 cmd-alt-ctrl-shift-9 = 'workspace 9'
 
 # Move windows/nodes to other workspaces
+# See: https://nikitabobko.github.io/AeroSpace/commands#move-node-to-workspace
 cmd-alt-ctrl-shift-f1 = 'move-node-to-workspace 1'
 cmd-alt-ctrl-shift-f2 = 'move-node-to-workspace 2'
 cmd-alt-ctrl-shift-f3 = 'move-node-to-workspace 3'
@@ -123,44 +177,32 @@ cmd-alt-ctrl-shift-f8 = 'move-node-to-workspace 8'
 cmd-alt-ctrl-shift-f9 = 'move-node-to-workspace 9'
 
 # Switch focus between the two last used workspaces
+# See: https://nikitabobko.github.io/AeroSpace/commands#workspace-back-and-forth
 cmd-alt-ctrl-shift-space = 'workspace-back-and-forth'
 
 # Move workspace to next display
+# See: https://nikitabobko.github.io/AeroSpace/commands#move-workspace-to-monitor
 cmd-alt-ctrl-shift-tab = 'move-workspace-to-monitor --wrap-around next'
 
-# Move windows in the given direction
-cmd-alt-ctrl-shift-left = 'move left'
-cmd-alt-ctrl-shift-down = 'move down'
-cmd-alt-ctrl-shift-up = 'move up'
-cmd-alt-ctrl-shift-right = 'move right'
-
 # Enter service mode
+# See: https://nikitabobko.github.io/AeroSpace/commands#mode
 cmd-alt-ctrl-shift-q = [
   'mode service',
   'exec-and-forget sketchybar --trigger aerospace_service_mode_enabled_changed AEROSPACE_SERVICE_MODE_ENABLED=true',
 ]
 
-# service mode bindings
+# 'service' binding mode declaration
+# See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
 [mode.service.binding]
 
-# Make switching window focus also available in service mode
-cmd-alt-ctrl-shift-n = 'focus left'
-cmd-alt-ctrl-shift-e = 'focus down'
-cmd-alt-ctrl-shift-i = 'focus up'
-cmd-alt-ctrl-shift-o = 'focus right'
-
-# Make moving windows in the given direction also available in service mode
-cmd-alt-ctrl-shift-left = 'move left'
-cmd-alt-ctrl-shift-down = 'move down'
-cmd-alt-ctrl-shift-up = 'move up'
-cmd-alt-ctrl-shift-right = 'move right'
-
 # Move windows to other nodes
+# See: https://nikitabobko.github.io/AeroSpace/commands#join-with
 n = 'join-with left'
 e = 'join-with down'
 i = 'join-with up'
 o = 'join-with right'
 
+# See: https://nikitabobko.github.io/AeroSpace/commands#resize
 # Resize windows
 left = 'resize width -50'
 down = 'resize height -50'
@@ -168,23 +210,31 @@ up = 'resize height +50'
 right = 'resize width +50'
 
 # Reset layout
+# See: https://nikitabobko.github.io/AeroSpace/commands#flatten-workspace-tree
 r = [
   'flatten-workspace-tree',
   'mode main',
   'exec-and-forget sketchybar --trigger aerospace_service_mode_enabled_changed AEROSPACE_SERVICE_MODE_ENABLED=false',
 ]
+
+# Reload config
+# See: https://nikitabobko.github.io/AeroSpace/commands#reload-config
 c = [
   'reload-config',
   'mode main',
   'exec-and-forget sketchybar --trigger aerospace_service_mode_enabled_changed AEROSPACE_SERVICE_MODE_ENABLED=false',
 ]
+
+# Close all windows on focused workspace
+# See: https://nikitabobko.github.io/AeroSpace/commands#close-all-windows-but-current
 backspace = [
   'close-all-windows-but-current',
   'mode main',
   'exec-and-forget sketchybar --trigger aerospace_service_mode_enabled_changed AEROSPACE_SERVICE_MODE_ENABLED=false',
 ]
+# Back to 'main' mode
+# See: https://nikitabobko.github.io/AeroSpace/commands#mode
 esc = [
   'mode main',
   'exec-and-forget sketchybar --trigger aerospace_service_mode_enabled_changed AEROSPACE_SERVICE_MODE_ENABLED=false',
 ]
-
