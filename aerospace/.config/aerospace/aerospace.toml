@@ -208,6 +208,8 @@ left = 'resize width -50'
 down = 'resize height -50'
 up = 'resize height +50'
 right = 'resize width +50'
+shift-down = 'resize smart -50'
+shift-up = 'resize smart +50'
 
 # Reset layout
 # See: https://nikitabobko.github.io/AeroSpace/commands#flatten-workspace-tree
