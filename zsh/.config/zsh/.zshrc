@@ -109,13 +109,18 @@ if type brew &>/dev/null; then
   FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
   autoload -Uz compinit
   compinit -d "$cache_directory/compinit-dumpfile"
+else
+  echo ERROR: Could not load brew completions.
 fi
 
 # Starship
 # ------------------------------------------------------------------------------
 if type starship &>/dev/null; then
   eval "$(starship init zsh)"
+else
+  echo ERROR: Could not load starship.
 fi
+
 # Git and LazyGit
 # ------------------------------------------------------------------------------
 ## Aliases
@@ -152,12 +157,16 @@ if type fzf &>/dev/null; then
   --bind 'ctrl-/:change-preview-window(down|hidden|)'
   --header 'CTRL-/: Toggle preview window position'
   "
+else
+  echo ERROR: Could not fzf shell integration.
 fi
 
 # zoxide (better `cd`)
 # ------------------------------------------------------------------------------
 if type zoxide &>/dev/null; then
   eval "$(zoxide init zsh --cmd cd)"
+else
+  echo ERROR: Could not load zoxide shell integration.
 fi
 
 # eza (better `ls`)
@@ -173,6 +182,8 @@ if type eza &>/dev/null; then
   alias lta="eza -lTag --icons=always"
   alias lta2="eza -lTag --level=2 --icons=always"
   alias lta3="eza -lTag --level=3 --icons=always"
+else
+  echo ERROR: eza could not be found. Skip setting up eza aliases.
 fi
 
 # Other aliases
