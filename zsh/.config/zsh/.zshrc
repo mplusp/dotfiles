@@ -96,25 +96,12 @@ plugins=(
 )
 __init_plugins "${plugins[@]}"
 
-# Starship
-# ------------------------------------------------------------------------------
-if type starship &>/dev/null; then
-  eval "$(starship init zsh)"
-fi
-#
-# Git and LazyGit
-# ------------------------------------------------------------------------------
-## Aliases
-alias gst="git status"
-alias gci="git commit"
-alias gp="git push"
-alias gfa="git fetch --all"
-alias lg="lazygit"
-
 # Homebrew (brew.sh)
 # ------------------------------------------------------------------------------
 if [[ -e "/opt/homebrew/bin/brew" ]]; then
   eval "$(/opt/homebrew/bin/brew shellenv)"
+else
+  echo ERROR: Could not find brew. Skip setting up brew shellenv.
 fi
 
 ## Brew completions
@@ -123,6 +110,20 @@ if type brew &>/dev/null; then
   autoload -Uz compinit
   compinit -d "$cache_directory/compinit-dumpfile"
 fi
+
+# Starship
+# ------------------------------------------------------------------------------
+if type starship &>/dev/null; then
+  eval "$(starship init zsh)"
+fi
+# Git and LazyGit
+# ------------------------------------------------------------------------------
+## Aliases
+alias gst="git status"
+alias gci="git commit"
+alias gp="git push"
+alias gfa="git fetch --all"
+alias lg="lazygit"
 
 # fzf
 # ------------------------------------------------------------------------------
