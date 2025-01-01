@@ -1,0 +1,7 @@
+theme = dark:tokyonight,light:tokyonight-day
+font-size = 14
+background-opacity = 0.9
+background-blur-radius = 10
+macos-titlebar-style = hidden
+quick-terminal-animation-duration = 0
+keybind = global:cmd+grave_accent=toggle_quick_terminal
