@@ -1,18 +1,18 @@
 {
   "auto-dark-mode.nvim": { "branch": "master", "commit": "4531f8b2b09ed8f0b8875a706419f9cecda1d969" },
-  "gitsigns.nvim": { "branch": "main", "commit": "abcd00a7d5bc1a9470cb21b023c575acade3e4db" },
+  "gitsigns.nvim": { "branch": "main", "commit": "ac38d7860b258ec07085d8d1931e1a487bcee21d" },
   "lazy.nvim": { "branch": "main", "commit": "d8f26efd456190241afd1b0f5235fe6fdba13d4a" },
   "lualine.nvim": { "branch": "master", "commit": "2a5bae925481f999263d6f5ed8361baef8df4f83" },
-  "mason-lspconfig.nvim": { "branch": "main", "commit": "97d9f1d3ad205dece6bcafd1d71cf1507608f3c7" },
+  "mason-lspconfig.nvim": { "branch": "main", "commit": "e942edf5c85b6a2ab74059ea566cac5b3e1514a4" },
   "mason.nvim": { "branch": "main", "commit": "e2f7f9044ec30067bc11800a9e266664b88cda22" },
   "mini.trailspace": { "branch": "main", "commit": "3a328e62559c33014e422fb9ae97afc4208208b1" },
-  "nvim-lspconfig": { "branch": "master", "commit": "355c565eae59810c1af4cf132938fa0fc251c5a2" },
+  "nvim-lspconfig": { "branch": "master", "commit": "9ee2e7dac2e1c74538a0e0d79b9e2d59a8517bd6" },
   "nvim-tree.lua": { "branch": "master", "commit": "d529a99f88e0dff02e0aa275db2f595cd252a2c8" },
-  "nvim-treesitter": { "branch": "master", "commit": "984214ef8e4ca18d77639663319aabdfba89632f" },
+  "nvim-treesitter": { "branch": "master", "commit": "0fb02ac5c39423b5c863eb7c8dd7b093879f1488" },
   "nvim-web-devicons": { "branch": "master", "commit": "aafa5c187a15701a7299a392b907ec15d9a7075f" },
   "plenary.nvim": { "branch": "master", "commit": "3707cdb1e43f5cea73afb6037e6494e7ce847a66" },
   "refactoring.nvim": { "branch": "master", "commit": "2db6d378e873de31d18ade549c2edba64ff1c2e3" },
   "telescope.nvim": { "branch": "master", "commit": "a0bbec21143c7bc5f8bb02e0005fa0b982edc026" },
-  "tokyonight.nvim": { "branch": "main", "commit": "775f82f08a3d1fb55a37fc6d3a4ab10cd7ed8a10" },
+  "tokyonight.nvim": { "branch": "main", "commit": "c3ab53c3f544e4a04f2a05d43451fd9bedff51b4" },
   "which-key.nvim": { "branch": "main", "commit": "1f8d414f61e0b05958c342df9b6a4c89ce268766" }
 }
