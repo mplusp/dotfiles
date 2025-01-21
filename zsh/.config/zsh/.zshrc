@@ -13,6 +13,9 @@ setopt NO_FLOW_CONTROL
 ## Enable vi mode
 bindkey -v
 
+## Lower mode switching delay to 10ms
+KEYTIMEOUT=1
+
 ## Bind Meta-. to insert last word of previous command and stay in insert mode
 bindkey -M viins "\e." insert-last-word
 
