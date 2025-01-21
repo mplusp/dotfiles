@@ -16,6 +16,25 @@ bindkey -v
 ## Lower mode switching delay to 10ms
 KEYTIMEOUT=1
 
+## Change cursor shape depending on active vi mode
+## Cursor shape control sequences are defind in
+## [XTerm Control Sequences](https://invisible-island.net/xterm/ctlseqs/ctlseqs.html#h4-Functions-using-CSI-_-ordered-by-the-final-character-lparen-s-rparen:CSI-Ps-SP-q.1D81)
+## Inspired by:
+## - https://unix.stackexchange.com/questions/547/make-my-zsh-prompt-show-mode-in-vi-mode/327572#327572
+## - https://web.archive.org/web/20240411231013/https://dougblack.io/words/zsh-vi-mode.html
+function zle-line-init zle-keymap-select {
+if [[ ${KEYMAP} == vicmd ]]; then
+  # steady block cursor in cmd mode
+  echo -ne '\e[2 q'
+else
+  # steady bar cursor in other modes
+  echo -ne '\e[6 q'
+fi
+zle reset-prompt
+}
+zle -N zle-line-init
+zle -N zle-keymap-select
+
 ## Bind Meta-. to insert last word of previous command and stay in insert mode
 bindkey -M viins "\e." insert-last-word
 
