@@ -5,4 +5,4 @@ background-blur-radius = 10
 macos-titlebar-style = hidden
 quick-terminal-animation-duration = 0
 keybind = global:cmd+grave_accent=toggle_quick_terminal
-command = ~/.config/tmux/ghostty_tmux_startup.sh
+command = tmux new -As ghostty
