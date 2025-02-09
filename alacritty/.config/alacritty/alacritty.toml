@@ -9,7 +9,7 @@ blur = true
 dynamic_title = true
 
 [font]
-normal = { family = "JetBrainsMonoNerdFont", style = "Regular" }
+normal = { family = "JetBrainsMono Nerd Font", style = "Regular" }
 size = 12.0
 
 [keyboard]
