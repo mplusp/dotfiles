@@ -1,0 +1,19 @@
+[general]
+live_config_reload = true
+import = ["~/.config/alacritty/tokyonight_night.toml"]
+
+[window]
+decorations = "None"
+opacity = 0.9
+blur = true
+dynamic_title = true
+
+[font]
+normal = { family = "JetBrainsMonoNerdFont", style = "Regular" }
+size = 12.0
+
+[keyboard]
+bindings = [
+  { key = "Enter", mods = "Control | Shift", action = "ToggleFullScreen" },
+  { key = "N", mods = "Control | Shift", action = "CreateNewWindow" },
+]
