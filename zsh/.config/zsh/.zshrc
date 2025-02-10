@@ -213,3 +213,6 @@ fi
 alias vim="nvim"
 alias vi="nvim"
 alias n="nvim"
+
+# cargo
+PATH="$PATH:$HOME/.cargo/bin"
