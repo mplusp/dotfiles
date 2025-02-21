@@ -23,7 +23,7 @@ user_specific_exe_dir="$HOME/.local/bin"
 if [[ ! -d "$user_specific_exe_dir" ]]; then
   mkdir -p "$user_specific_exe_dir"
 fi
-PATH="$user_specific_exe_dir:$PATH"
+export PATH="$user_specific_exe_dir:$PATH"
 
 # Set $ZTODDIR here. All other Zsh related configuration happens there.
 # ------------------------------------------------------------------------------
