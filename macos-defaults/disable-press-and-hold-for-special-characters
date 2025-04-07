@@ -1,0 +1,6 @@
+#!/usr/bin/env sh
+# All values copied from https://mac-key-repeat.zaymon.dev
+# The system has to be restarted for changes to take effect.
+
+# disable press and hold for special characters
+defaults write -g ApplePressAndHoldEnabled -bool false
