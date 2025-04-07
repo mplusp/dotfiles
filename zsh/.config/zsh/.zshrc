@@ -210,8 +210,6 @@ fi
 
 # Other aliases
 # ------------------------------------------------------------------------------
-alias vim="nvim"
-alias vi="nvim"
 alias n="nvim"
 
 # cargo
