@@ -1,0 +1,124 @@
+# Source: https://github.com/RickTimmer/k9s-tokyonight
+
+foreground: &foreground "#A9B1DC"
+background: &background "#24283B"
+current_line: &current_line "#E0AF68"
+selection: &selection "#797D99"
+comment: &comment "#7AA2F7"
+cyan: &cyan "#7DCFFF"
+green: &green "#73DACA"
+yellow: &yellow "#E0AF68"
+orange: &orange "#ff9e64"
+magenta: &magenta "#BB9AF7"
+pink: &pink "#e69AF7"
+blue: &blue "#7AA2F7"
+red: &red "#F7768E"
+white: &white "#C0CAF5"
+
+k9s:
+  # General K9s styles
+  body:
+    fgColor: *foreground
+    bgColor: default
+    logoColor: *orange
+  # Command prompt styles
+  prompt:
+    fgColor: *foreground
+    bgColor: *background
+    suggestColor: *orange
+  # ClusterInfoView styles.
+  info:
+    fgColor: *orange
+    sectionColor: *foreground
+  # Dialog styles.
+  dialog:
+    fgColor: *foreground
+    bgColor: default
+    buttonFgColor: *foreground
+    buttonBgColor: *green
+    buttonFocusFgColor: *background
+    buttonFocusBgColor: *foreground
+    labelFgColor: *comment
+    fieldFgColor: *foreground
+  frame:
+    # Borders styles.
+    border:
+      fgColor: *selection
+      focusColor: *foreground
+    menu:
+      fgColor: *foreground
+      keyColor: *blue
+      # Used for favorite namespaces
+      numKeyColor: *blue
+    # CrumbView attributes for history navigation.
+    crumbs:
+      fgColor: *white
+      bgColor: *cyan
+      activeColor: *yellow
+    # Resource status and update styles
+    status:
+      newColor: *blue
+      modifyColor: *yellow
+      addColor: *white
+      errorColor: *red
+      highlightcolor: *orange
+      killColor: *magenta
+      completedColor: *comment
+    # Border title styles.
+    title:
+      fgColor: *foreground
+      bgColor: default
+      highlightColor: *blue
+      counterColor: *green
+      filterColor: *magenta
+  views:
+    # Charts skins...
+    charts:
+      bgColor: default
+      defaultDialColors:
+        - *blue
+        - *red
+      defaultChartColors:
+        - *blue
+        - *red
+    # TableView attributes.
+    table:
+      fgColor: *foreground
+      bgColor: default
+      cursorFgColor: *white
+      cursorBgColor: *background
+      markColor: *pink
+      # Header row styles.
+      header:
+        fgColor: *foreground
+        bgColor: default
+        sorterColor: *cyan
+    # Xray view attributes.
+    xray:
+      fgColor: *foreground
+      bgColor: default
+      cursorColor: *current_line
+      graphicColor: *blue
+      showIcons: false
+    # YAML info styles.
+    yaml:
+      keyColor: *green
+      colonColor: *blue
+      valueColor: *foreground
+    # Logs styles.
+    logs:
+      fgColor: *foreground
+      bgColor: default
+      indicator:
+        fgColor: *foreground
+        bgColor: *selection
+        toggleOnColor: *cyan
+        toggleOffColor: *foreground
+    help:
+      fgColor: *foreground
+      bgColor: default
+      indicator:
+        fgColor: *red
+        bgColor: default
+
+
