@@ -94,6 +94,6 @@ local function __load_plugin() {
   if $enable_plugin_helper_messages; then
     echo "Loading '$plugin'..."
   fi
-  source "$plugin_dir/$(basename $plugin).zsh"
+  source "$plugin_dir/$(basename $plugin).plugin.zsh"
 }
 
