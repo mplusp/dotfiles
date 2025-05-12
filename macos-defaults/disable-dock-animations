@@ -1,0 +1,4 @@
+#!/usr/bin/env sh
+
+# disable macOS Dock animations
+defaults write com.apple.dock autohide-time-modifier -int 0;killall Dock
