@@ -84,6 +84,14 @@ config.keys = {
       args = { os.getenv("SHELL"), "-c", "$VISUAL $WEZTERM_CONFIG_FILE" },
     }),
   },
+  -- Spawn Window without tmux
+  {
+    key = ">",
+    mods = "CTRL|SHIFT",
+    action = wezterm.action.SpawnCommandInNewWindow({
+      args = { os.getenv("SHELL"), "-l", "-c", "zsh" },
+    }),
+  },
 }
 
 -- Return config to WezTerm
