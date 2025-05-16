@@ -1,6 +1,13 @@
 # Get editor completions based on the config schema
 "$schema" = 'https://starship.rs/config-schema.json'
 
+format = """
+$username\
+$hostname\
+$shlvl\
+$directory\
+$character"""
+
 # Increase truncation length and add truncation symbol
 [directory]
 truncate_to_repo = false
