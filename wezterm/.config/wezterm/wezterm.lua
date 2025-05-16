@@ -84,6 +84,15 @@ config.keys = {
       args = { os.getenv("SHELL"), "-c", "$VISUAL $WEZTERM_CONFIG_FILE" },
     }),
   },
+  -- Quickly open config file with alternative keybind
+  {
+    key = "<",
+    mods = "CTRL|SHIFT",
+    action = wezterm.action.SpawnCommandInNewWindow({
+      cwd = os.getenv("WEZTERM_CONFIG_DIR"),
+      args = { os.getenv("SHELL"), "-c", "$VISUAL $WEZTERM_CONFIG_FILE" },
+    }),
+  },
   -- Spawn Window without tmux
   {
     key = ">",
