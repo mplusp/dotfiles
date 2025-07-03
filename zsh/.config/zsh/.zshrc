@@ -220,3 +220,6 @@ alias ksc="kubectl config use-context"
 
 # cargo
 PATH="$PATH:$HOME/.cargo/bin"
+
+# Rancher Desktop
+PATH="$PATH:$HOME/.rd/bin"
