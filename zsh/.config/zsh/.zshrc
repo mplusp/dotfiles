@@ -216,6 +216,7 @@ alias kg="kubectl get"
 alias kgp="kubectl get pods"
 alias kgs="kubectl get services"
 alias kd="kubectl describe"
+alias ksc="kubectl config use-context"
 
 # cargo
 PATH="$PATH:$HOME/.cargo/bin"
