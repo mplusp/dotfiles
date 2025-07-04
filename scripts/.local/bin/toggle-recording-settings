@@ -1,0 +1,87 @@
+#!/usr/bin/env bash
+
+# TODO: Use GNU sed instead of macOS sed, as it is a little less clunky in many cases.
+
+# Use empty file to remember toggle state
+TOGGLE="$XDG_STATE_HOME/.recording_toggle"
+if [ ! -e "$TOGGLE" ]; then
+  touch "$TOGGLE"
+else
+  rm "$TOGGLE"
+fi
+
+# Terminals
+## Use big font while recording. Also don't start with tmux by default.
+DEFAULT_FONT_SIZE=14
+RECORDING_FONT_SIZE=32
+
+### WezTerm
+WEZTERM_CONFIG="$XDG_CONFIG_HOME/wezterm/wezterm.lua"
+if [ ! -e "$TOGGLE" ]; then
+  sed -i '' "s/font_size = $DEFAULT_FONT_SIZE/font_size = $RECORDING_FONT_SIZE/g" "$WEZTERM_CONFIG"
+else
+  sed -i '' "s/font_size = $RECORDING_FONT_SIZE/font_size = $DEFAULT_FONT_SIZE/g" "$WEZTERM_CONFIG"
+fi
+if [ ! -e "$TOGGLE" ]; then
+  sed -i '' 's|config.default_prog = { "/bin/zsh", "-l", "-c", "--", "tmux new -As base" }|-- config.default_prog = { "/bin/zsh", "-l", "-c", "--", "tmux new -As base" }|' "$WEZTERM_CONFIG"
+else
+  sed -i '' 's|-- config.default_prog = { "/bin/zsh", "-l", "-c", "--", "tmux new -As base" }|config.default_prog = { "/bin/zsh", "-l", "-c", "--", "tmux new -As base" }|' "$WEZTERM_CONFIG"
+fi
+
+### Ghostty
+GHOSTTY_CONFIG="$XDG_CONFIG_HOME/ghostty/config"
+if [ ! -e "$TOGGLE" ]; then
+  sed -i '' "s/font-size = $DEFAULT_FONT_SIZE/font-size = $RECORDING_FONT_SIZE/g" "$GHOSTTY_CONFIG"
+else
+  sed -i '' "s/font-size = $RECORDING_FONT_SIZE/font-size = $DEFAULT_FONT_SIZE/g" "$GHOSTTY_CONFIG"
+fi
+if [ ! -e "$TOGGLE" ]; then
+  sed -i '' 's/command = tmux new -As base/#command = tmux new -As base/' "$GHOSTTY_CONFIG"
+else
+  sed -i '' 's/#command = tmux new -As base/command = tmux new -As base/' "$GHOSTTY_CONFIG"
+fi
+
+# Sketchybar
+## Don't show clock while recording
+SKETCHYBAR_CONFIG="$XDG_CONFIG_HOME/sketchybar/sketchybarrc"
+if [ ! -e "$TOGGLE" ]; then
+  sed -i '' 's|source "$ITEM_DIR/clock"|#source "$ITEM_DIR/clock"|g' "$SKETCHYBAR_CONFIG"
+else
+  sed -i '' 's|#source "$ITEM_DIR/clock"|source "$ITEM_DIR/clock"|g' "$SKETCHYBAR_CONFIG"
+fi
+
+# nvim
+## Disable which-key.nvim while recording
+WHICH_KEY_PLUGIN="$XDG_CONFIG_HOME/nvim/lua/plugins/which-key.lua"
+if [ ! -e "$TOGGLE" ]; then
+  sed -i '' 's/enabled = true,/enabled = false,/g' "$WHICH_KEY_PLUGIN"
+else
+  sed -i '' 's/enabled = false,/enabled = true,/g' "$WHICH_KEY_PLUGIN"
+fi
+
+# zsh
+## Disable autosuggestions while recording
+ZSH_CONFIG="$XDG_CONFIG_HOME/zsh/.zshrc"
+if [ ! -e "$TOGGLE" ]; then
+  sed -i '' '/zsh-users\/zsh-autosuggestions/d' "$ZSH_CONFIG"
+else
+  sed -i '' '/zsh-users\/zsh-syntax-highlighting/a\
+  zsh-users/zsh-autosuggestions
+' "$ZSH_CONFIG"
+fi
+
+# starship
+## Show
+STARSHIP_CONFIG="$XDG_CONFIG_HOME/starship.toml"
+if [ ! -e "$TOGGLE" ]; then
+  sed -i '' '/https:\/\/starship.rs\/config-schema.json/a\
+format = """\
+\$username\
+\$hostname\
+\$shlvl\
+\$directory\
+\$character"""\
+' "$STARSHIP_CONFIG"
+else
+  sed -i '' '/format = """/,/\$character"""/d' "$STARSHIP_CONFIG"
+fi
