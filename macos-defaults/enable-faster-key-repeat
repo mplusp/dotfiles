@@ -3,7 +3,7 @@
 # The system has to be restarted for changes to take effect.
 
 # set initial key repeat delay to 150 ms
-defaults write -g InitialKeyRepeat -int 10
+defaults write -g InitialKeyRepeat -int 20
 
 # set key repeat interval to 15 ms
 defaults write -g KeyRepeat -int 1
