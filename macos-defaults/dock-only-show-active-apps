@@ -1,0 +1,4 @@
+#!/usr/bin/env sh
+
+# Only show active apps in Dock
+defaults write com.apple.dock "static-only" -bool "true" && killall Dock

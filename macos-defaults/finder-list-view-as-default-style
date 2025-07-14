@@ -1,0 +1,4 @@
+#!/usr/bin/env sh
+
+# Use list view as default display style
+defaults write com.apple.finder "FXPreferredViewStyle" -string "Nlsv" && killall Finder

@@ -1,0 +1,4 @@
+#!/usr/bin/env sh
+
+# Remove Dock autohide delay
+defaults write com.apple.dock "autohide-delay" -float "0" && killall Dock

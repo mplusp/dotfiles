@@ -1,0 +1,4 @@
+#!/usr/bin/env sh
+
+# Show path bar in Finder
+defaults write com.apple.finder "ShowPathbar" -bool "true" && killall Finder

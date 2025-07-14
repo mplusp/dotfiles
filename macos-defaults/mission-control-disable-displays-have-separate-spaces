@@ -1,0 +1,4 @@
+#!/usr/bin/env sh
+
+# Disable "Displays have separate spaces"
+defaults write com.apple.spaces "spans-displays" -bool "false" && killall SystemUIServer

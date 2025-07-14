@@ -1,0 +1,4 @@
+#!/usr/bin/env sh
+
+# Group windows by application
+defaults write com.apple.dock "expose-group-apps" -bool "true" && killall Dock
