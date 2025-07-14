@@ -1,0 +1,4 @@
+#!/usr/bin/env sh
+
+# Hide menu bar
+defaults write NSGlobalDomain _HIHideMenuBar -bool true && killall Dock

@@ -1,0 +1,4 @@
+#!/usr/bin/env sh
+
+# Autohide Dock
+defaults write com.apple.dock "autohide" -bool "true" && killall Dock
