@@ -135,6 +135,14 @@ else
   echo ERROR: Could not load brew completions.
 fi
 
+# cargo
+# ------------------------------------------------------------------------------
+PATH="$PATH:$HOME/.cargo/bin"
+
+# Rancher Desktop
+# ------------------------------------------------------------------------------
+PATH="$PATH:$HOME/.rd/bin"
+
 # Starship
 # ------------------------------------------------------------------------------
 if type starship &>/dev/null; then
@@ -220,8 +228,3 @@ alias kgs="kubectl get services"
 alias kd="kubectl describe"
 alias ksc="kubectl config use-context"
 
-# cargo
-PATH="$PATH:$HOME/.cargo/bin"
-
-# Rancher Desktop
-PATH="$PATH:$HOME/.rd/bin"
