@@ -13,6 +13,12 @@ setopt NO_FLOW_CONTROL
 ## Enable vi mode
 bindkey -v
 
+## Enable edit-command-line widget for vi mode
+autoload -U edit-command-line
+zle -N edit-command-line
+bindkey -M vicmd '^X^E' edit-command-line
+bindkey -M viins '^X^E' edit-command-line
+
 ## Lower mode switching delay to 10ms
 KEYTIMEOUT=1
 
