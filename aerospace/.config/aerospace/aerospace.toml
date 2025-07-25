@@ -116,6 +116,7 @@ cmd-alt-ctrl-shift-r = 'exec-and-forget open -a "Windows App"'
 cmd-alt-ctrl-shift-c = 'exec-and-forget open -a "Slack.app"'
 cmd-alt-ctrl-shift-w = 'exec-and-forget open -a "Microsoft Teams.app"'
 cmd-alt-ctrl-shift-s = 'exec-and-forget open -a "Spotify.app"'
+cmd-alt-ctrl-shift-h = 'exec-and-forget open -a "Claude.app"'
 
 # Switch between layouts
 # See: https://nikitabobko.github.io/AeroSpace/commands#layout
