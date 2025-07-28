@@ -44,4 +44,4 @@ PATH="$PATH:$HOME/.rd/bin"
 
 # bob
 # ------------------------------------------------------------------------------
-. "/Users/mplusp/.local/share/bob/env/env.sh"
+. "$HOME/.local/share/bob/env/env.sh"
