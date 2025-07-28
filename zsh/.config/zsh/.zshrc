@@ -141,14 +141,6 @@ else
   echo ERROR: Could not load brew completions.
 fi
 
-# cargo
-# ------------------------------------------------------------------------------
-PATH="$PATH:$HOME/.cargo/bin"
-
-# Rancher Desktop
-# ------------------------------------------------------------------------------
-PATH="$PATH:$HOME/.rd/bin"
-
 # Starship
 # ------------------------------------------------------------------------------
 if type starship &>/dev/null; then

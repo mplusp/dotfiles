@@ -34,3 +34,10 @@ export ZDOTDIR=${ZDOTDIR:-$XDG_CONFIG_HOME/zsh}
 export EDITOR=nvim
 export VISUAL=nvim
 
+# cargo
+# ------------------------------------------------------------------------------
+PATH="$PATH:$HOME/.cargo/bin"
+
+# Rancher Desktop
+# ------------------------------------------------------------------------------
+PATH="$PATH:$HOME/.rd/bin"
