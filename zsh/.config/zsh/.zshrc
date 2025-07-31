@@ -121,6 +121,7 @@ plugins=(
   zsh-users/zsh-syntax-highlighting
   zsh-users/zsh-autosuggestions
   Aloxaf/fzf-tab
+  lukechilds/zsh-nvm
 )
 __init_plugins "${plugins[@]}"
 
