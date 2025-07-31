@@ -136,6 +136,8 @@ fi
 ## Brew completions
 if type brew &>/dev/null; then
   FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
+  autoload -Uz compinit
+  compinit -d "$cache_directory/compinit-dumpfile"
 else
   echo ERROR: Could not load brew completions.
 fi
