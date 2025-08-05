@@ -94,6 +94,13 @@ if.app-id = 'pl.maketheweb.cleanshotx'
 check-further-callbacks = true
 run = 'layout floating'
 
+# Float Screen Studio windows by default
+# See: https://nikitabobko.github.io/AeroSpace/guide#on-window-detected-callback
+[[on-window-detected]]
+if.app-id = 'com.timpler.screenstudio'
+check-further-callbacks = true
+run = 'layout floating'
+
 # Possible values: (qwerty|dvorak)
 # See https://nikitabobko.github.io/AeroSpace/guide#key-mapping
 [key-mapping]
