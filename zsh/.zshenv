@@ -40,9 +40,14 @@ for dir in "${xdg_base_dirs[@]}"; do
   fi
 done
 
-# Set ZTODDIR here. All other Zsh related configuration happens there.
+# Set ZDOTDIR here. All other Zsh related configuration happens there.
 # ------------------------------------------------------------------------------
 export ZDOTDIR=${ZDOTDIR:-$XDG_CONFIG_HOME/zsh}
+
+# Make sure directories actually exist
+if [[ ! -d "$ZDOTDIR" ]]; then
+  mkdir -p "$ZDOTDIR"
+fi
 
 # Set up default editor
 # ------------------------------------------------------------------------------
