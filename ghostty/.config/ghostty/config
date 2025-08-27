@@ -1,5 +1,5 @@
 theme = dark:tokyonight,light:tokyonight-day
-font-size = 14
+font-size = 13
 background-opacity = 0.9
 background-blur-radius = 10
 macos-titlebar-style = hidden

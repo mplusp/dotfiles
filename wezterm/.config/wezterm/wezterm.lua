@@ -47,7 +47,7 @@ config.default_prog = { "/bin/zsh", "-l", "-c", "--", "tmux new -As base" }
 config.skip_close_confirmation_for_processes_named = { "tmux" }
 
 -- Appearance
-config.font_size = 14.0
+config.font_size = 13.0
 config.color_scheme = color_scheme_for_appearance(wezterm.gui.get_appearance())
 config.window_background_opacity = window_background_opacity
 config.macos_window_background_blur = 10
