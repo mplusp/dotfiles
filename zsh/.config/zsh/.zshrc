@@ -227,3 +227,4 @@ alias kgs="kubectl get services"
 alias kd="kubectl describe"
 alias ksc="kubectl config use-context"
 
+. "/Users/mplusp/.local/share/bob/env/env.sh"

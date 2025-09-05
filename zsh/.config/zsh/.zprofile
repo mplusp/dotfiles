@@ -26,7 +26,3 @@ export PATH="$PATH:$HOME/.cargo/bin"
 # Rancher Desktop
 # ------------------------------------------------------------------------------
 export PATH="$PATH:$HOME/.rd/bin"
-
-# Source bob (nvim version manager) environment setup (modifies PATH)
-# ------------------------------------------------------------------------------
-. "$HOME/.local/share/bob/env/env.sh"
