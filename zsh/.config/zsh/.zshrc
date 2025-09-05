@@ -127,19 +127,20 @@ __init_plugins "${plugins[@]}"
 
 # Homebrew (brew.sh)
 # ------------------------------------------------------------------------------
-if [[ -e "/opt/homebrew/bin/brew" ]]; then
-  eval "$(/opt/homebrew/bin/brew shellenv)"
-else
-  echo ERROR: Could not find brew. Skip setting up brew shellenv.
-fi
-
+if [[ "$OSTYPE" == "darwin"* ]]; then
+  if [[ -e "/opt/homebrew/bin/brew" ]]; then
+    eval "$(/opt/homebrew/bin/brew shellenv)"
+  else
+    echo ERROR: Could not find brew. Skip setting up brew shellenv.
+  fi
 ## Brew completions
-if type brew &>/dev/null; then
-  FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
-  autoload -Uz compinit
-  compinit -d "$cache_directory/compinit-dumpfile"
-else
-  echo ERROR: Could not load brew completions.
+  if type brew &>/dev/null; then
+    FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
+    autoload -Uz compinit
+    compinit -d "$cache_directory/compinit-dumpfile"
+  else
+    echo ERROR: Could not load brew completions.
+  fi
 fi
 
 # Starship
