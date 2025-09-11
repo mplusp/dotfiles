@@ -121,7 +121,6 @@ plugins=(
   zsh-users/zsh-syntax-highlighting
   zsh-users/zsh-autosuggestions
   Aloxaf/fzf-tab
-  lukechilds/zsh-nvm
 )
 __init_plugins "${plugins[@]}"
 
@@ -141,6 +140,14 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
   else
     echo ERROR: Could not load brew completions.
   fi
+fi
+
+# mise-en-place
+# ------------------------------------------------------------------------------
+if type mise &>/dev/null; then
+  eval "$(mise activate zsh)"
+else
+  echo ERROR: Could not activate mise.
 fi
 
 # Starship
