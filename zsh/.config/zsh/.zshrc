@@ -206,6 +206,14 @@ else
   echo ERROR: Could not load zoxide shell integration.
 fi
 
+# bob
+# ------------------------------------------------------------------------------
+if type zoxide &>/dev/null; then
+  source "$XDG_DATA_HOME/bob/env/env.sh"
+else
+  echo "ERROR: Could not source bob env.sh"
+fi
+
 # eza (better `ls`)
 # ------------------------------------------------------------------------------
 if type eza &>/dev/null; then
@@ -234,5 +242,3 @@ alias kgp="kubectl get pods"
 alias kgs="kubectl get services"
 alias kd="kubectl describe"
 alias ksc="kubectl config use-context"
-
-. "/Users/mplusp/.local/share/bob/env/env.sh"
