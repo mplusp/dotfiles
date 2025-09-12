@@ -146,6 +146,7 @@ fi
 # ------------------------------------------------------------------------------
 if type mise &>/dev/null; then
   eval "$(mise activate zsh)"
+  eval "$(mise completion zsh)"
 else
   echo ERROR: Could not activate mise.
 fi
@@ -154,6 +155,7 @@ fi
 # ------------------------------------------------------------------------------
 if type starship &>/dev/null; then
   eval "$(starship init zsh)"
+  eval "$(starship completions zsh)"
 else
   echo ERROR: Could not load starship.
 fi
