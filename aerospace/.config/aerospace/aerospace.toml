@@ -71,21 +71,21 @@ automatically-unhide-macos-hidden-apps = false
 [gaps]
 outer.top =     [
   # offset of 32 on internal display, because of notch (16" MPB)
-  { monitor.'built-in.*' = 16 },
-  48
+  { monitor.'built-in.*' = 6 },
+  38
 ]
-outer.right =      24
-outer.bottom =     24
-outer.left =       24
-inner.horizontal = 24
-inner.vertical =   24
+outer.right =      8
+outer.bottom =     8
+outer.left =       8
+inner.horizontal = 8
+inner.vertical =   8
 
 # Assign certain workspaces to
 # See: https://nikitabobko.github.io/AeroSpace/guide#assign-workspaces-to-monitors
 [workspace-to-monitor-force-assignment]
-7 = 'secondary'
-8 = 'secondary'
-9 = 'secondary'
+7 = [ 'secondary', 1 ]
+8 = [ 'secondary', 1 ]
+9 = [ 3, 'secondary' ]
 
 # Float CleanShot X windows by default
 # See: https://nikitabobko.github.io/AeroSpace/guide#on-window-detected-callback
@@ -101,6 +101,27 @@ if.app-id = 'com.timpler.screenstudio'
 check-further-callbacks = true
 run = 'layout floating'
 
+[[on-window-detected]]
+if.app-id = 'com.brave.Browser'
+run = 'move-node-to-workspace 1'
+
+[[on-window-detected]]
+if.app-id = 'com.github.wez.wezterm'
+run = 'move-node-to-workspace 2'
+
+[[on-window-detected]]
+if.app-id = 'com.mitchellh.ghostty'
+run = 'move-node-to-workspace 2'
+
+[[on-window-detected]]
+if.app-id = 'md.obsidian'
+run = 'move-node-to-workspace 4'
+
+[[on-window-detected]]
+if.app-id = 'com.github.wez.wezterm'
+run = 'move-node-to-workspace 2'
+
+
 # Possible values: (qwerty|dvorak)
 # See https://nikitabobko.github.io/AeroSpace/guide#key-mapping
 [key-mapping]
@@ -111,7 +132,6 @@ preset = 'qwerty'
 # 'main' binding mode must be always presented
 # Fallback value (if you omit the key): mode.main.binding = {}
 [mode.main.binding]
-
 # Open/focus apps using keybinds
 # See: https://nikitabobko.github.io/AeroSpace/commands#exec-and-forget
 cmd-alt-ctrl-shift-b = 'exec-and-forget open -a "Brave Browser.app"'
@@ -175,15 +195,15 @@ cmd-alt-ctrl-shift-9 = 'workspace 9'
 
 # Move windows/nodes to other workspaces
 # See: https://nikitabobko.github.io/AeroSpace/commands#move-node-to-workspace
-cmd-alt-ctrl-shift-f1 = 'move-node-to-workspace 1'
-cmd-alt-ctrl-shift-f2 = 'move-node-to-workspace 2'
-cmd-alt-ctrl-shift-f3 = 'move-node-to-workspace 3'
-cmd-alt-ctrl-shift-f4 = 'move-node-to-workspace 4'
-cmd-alt-ctrl-shift-f5 = 'move-node-to-workspace 5'
-cmd-alt-ctrl-shift-f6 = 'move-node-to-workspace 6'
-cmd-alt-ctrl-shift-f7 = 'move-node-to-workspace 7'
-cmd-alt-ctrl-shift-f8 = 'move-node-to-workspace 8'
-cmd-alt-ctrl-shift-f9 = 'move-node-to-workspace 9'
+cmd-alt-ctrl-shift-f1 = [ 'move-node-to-workspace 1', 'workspace 1' ]
+cmd-alt-ctrl-shift-f2 = [ 'move-node-to-workspace 2', 'workspace 2' ]
+cmd-alt-ctrl-shift-f3 = [ 'move-node-to-workspace 3', 'workspace 3' ]
+cmd-alt-ctrl-shift-f4 = [ 'move-node-to-workspace 4', 'workspace 4' ]
+cmd-alt-ctrl-shift-f5 = [ 'move-node-to-workspace 5', 'workspace 5' ]
+cmd-alt-ctrl-shift-f6 = [ 'move-node-to-workspace 6', 'workspace 6' ]
+cmd-alt-ctrl-shift-f7 = [ 'move-node-to-workspace 7', 'workspace 7' ]
+cmd-alt-ctrl-shift-f8 = [ 'move-node-to-workspace 8', 'workspace 8' ]
+cmd-alt-ctrl-shift-f9 = [ 'move-node-to-workspace 9', 'workspace 9' ]
 
 # Switch focus between the two last used workspaces
 # See: https://nikitabobko.github.io/AeroSpace/commands#workspace-back-and-forth

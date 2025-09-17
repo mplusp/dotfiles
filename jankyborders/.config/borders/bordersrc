@@ -3,13 +3,14 @@
 # Colors taken from tokyonight theme
 red="0xfff7768e"
 blue="0xff7aa2f7"
+transparent="0x00000000"
 
 options=(
   active_color="$red"
-  inactive_color="$blue"
+  inactive_color="$transparent"
   hidpi=on
   style=round
-  width=6.0
+  width=3.0
   blacklist="Screen Studio"
 )
 

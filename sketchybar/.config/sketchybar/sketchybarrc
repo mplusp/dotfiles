@@ -20,19 +20,19 @@ sketchybar --bar "${bar[@]}"
 
 # Configure default values for later defined items.
 default=(
-  background.color="$BACKGROUND_COLOR"
   background.border_color="$BACKGROUND_BORDER_COLOR"
+  background.color="$BACKGROUND_COLOR"
   background.corner_radius="$BACKGROUND_CORNER_RADIUS"
   background.height="$BACKGROUND_HEIGHT"
   icon.drawing=off
   icon.font="$ICON_FONT"
   label.align="$LABEL_ALIGN"
-  label.font="$LABEL_FONT"
   label.color="$LABEL_COLOR"
+  label.font="$LABEL_FONT"
   label.highlight_color="$LABEL_HIGHLIGHT_COLOR"
-  label.y_offset="$LABEL_Y_OFFSET"
   label.padding_left="$LABEL_PADDING"
   label.padding_right="$LABEL_PADDING"
+  label.y_offset="$LABEL_Y_OFFSET"
   y_offset="$Y_OFFSET"
 )
 sketchybar --default "${default[@]}"
