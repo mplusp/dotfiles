@@ -58,13 +58,6 @@ config.use_fancy_tab_bar = false
 
 -- Keybindings
 config.keys = {
-  -- Default QuickSelect keybind (CTRL-SHIFT-Space) gets captured by something
-  -- else on my system
-  {
-    key = "A",
-    mods = "CTRL|SHIFT",
-    action = wezterm.action.QuickSelect,
-  },
   {
     key = "O",
     mods = "CTRL|SHIFT",
