@@ -51,12 +51,12 @@ else
 fi
 
 # nvim
-## Disable which-key.nvim while recording
-WHICH_KEY_PLUGIN="$XDG_CONFIG_HOME/nvim/lua/plugins/which-key.lua"
+## Disable certain plugins while recording
+NVIM_INIT_LUA="$XDG_CONFIG_HOME/nvim/init.lua"
 if [ ! -e "$TOGGLE" ]; then
-  sed -i '' 's/enabled = true,/enabled = false,/g' "$WHICH_KEY_PLUGIN"
+  sed -i '' "s/require('plugins.which-key')/--require('plugins.which-key')/g" "$NVIM_INIT_LUA"
 else
-  sed -i '' 's/enabled = false,/enabled = true,/g' "$WHICH_KEY_PLUGIN"
+  sed -i '' "s/--require('plugins.which-key')/require('plugins.which-key')/g" "$NVIM_INIT_LUA"
 fi
 
 # zsh
