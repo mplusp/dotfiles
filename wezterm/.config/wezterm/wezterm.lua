@@ -81,7 +81,7 @@ config.keys = {
     mods = "SUPER",
     action = wezterm.action.SpawnCommandInNewWindow({
       cwd = os.getenv("WEZTERM_CONFIG_DIR"),
-      args = { os.getenv("SHELL"), "-c", "$VISUAL $WEZTERM_CONFIG_FILE" },
+      args = { os.getenv("SHELL"), "-l", "-c", 'eval "$(mise env zsh)" && source "$XDG_DATA_HOME/bob/env/env.sh" && $VISUAL $WEZTERM_CONFIG_FILE' },
     }),
   },
   -- Quickly open config file with alternative keybind
@@ -90,7 +90,7 @@ config.keys = {
     mods = "CTRL|SHIFT",
     action = wezterm.action.SpawnCommandInNewWindow({
       cwd = os.getenv("WEZTERM_CONFIG_DIR"),
-      args = { os.getenv("SHELL"), "-c", "$VISUAL $WEZTERM_CONFIG_FILE" },
+      args = { os.getenv("SHELL"), "-l", "-c", 'eval "$(mise env zsh)" && source "$XDG_DATA_HOME/bob/env/env.sh" && $VISUAL $WEZTERM_CONFIG_FILE' },
     }),
   },
   -- Spawn Window without tmux
