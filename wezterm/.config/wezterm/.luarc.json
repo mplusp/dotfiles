@@ -1,0 +1,6 @@
+{
+  "runtime.version": "LuaJIT",
+  "diagnostics.globals": ["wezterm"],
+  "workspace.checkThirdParty": false,
+  "completion.callSnippet": "Replace"
+}
