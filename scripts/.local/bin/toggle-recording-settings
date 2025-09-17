@@ -72,7 +72,7 @@ fi
 
 # starship
 ## Show
-STARSHIP_CONFIG="$XDG_CONFIG_HOME/starship.toml"
+STARSHIP_CONFIG="$XDG_CONFIG_HOME/starship/starship.toml"
 if [ ! -e "$TOGGLE" ]; then
   sed -i '' '/https:\/\/starship.rs\/config-schema.json/a\
 format = """\

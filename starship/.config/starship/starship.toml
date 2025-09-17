@@ -6,6 +6,3 @@
 truncate_to_repo = false
 truncation_length = 8
 truncation_symbol = '…/'
-
-[kubernetes]
-disabled = true

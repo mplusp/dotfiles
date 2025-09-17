@@ -156,6 +156,7 @@ fi
 if type starship &>/dev/null; then
   eval "$(starship init zsh)"
   eval "$(starship completions zsh)"
+  export STARSHIP_CONFIG="$XDG_CONFIG_HOME/starship/starship.toml"
 else
   echo ERROR: Could not load starship.
 fi
