@@ -1,6 +1,7 @@
 theme = dark:tokyonight,light:tokyonight-day
-font-size = 13
 background-opacity = 0.9
+font-family = IosevkaTerm Nerd Font Mono
+font-size = 18
 background-blur-radius = 10
 macos-titlebar-style = hidden
 quick-terminal-animation-duration = 0

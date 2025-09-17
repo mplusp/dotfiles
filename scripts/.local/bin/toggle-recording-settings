@@ -12,7 +12,7 @@ fi
 
 # Terminals
 ## Use big font while recording. Also don't start with tmux by default.
-DEFAULT_FONT_SIZE=13
+DEFAULT_FONT_SIZE=18
 RECORDING_FONT_SIZE=32
 
 ### WezTerm
