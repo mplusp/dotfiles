@@ -28,18 +28,18 @@ KEYTIMEOUT=1
 ## Inspired by:
 ## - https://unix.stackexchange.com/questions/547/make-my-zsh-prompt-show-mode-in-vi-mode/327572#327572
 ## - https://web.archive.org/web/20240411231013/https://dougblack.io/words/zsh-vi-mode.html
-function zle-line-init zle-keymap-select {
-if [[ ${KEYMAP} == vicmd ]]; then
-  # steady block cursor in cmd mode
-  echo -ne '\e[2 q'
-else
-  # steady bar cursor in other modes
-  echo -ne '\e[6 q'
-fi
-zle reset-prompt
-}
-zle -N zle-line-init
-zle -N zle-keymap-select
+# function zle-line-init zle-keymap-select {
+# if [[ ${KEYMAP} == vicmd ]]; then
+#   # steady block cursor in cmd mode
+#   echo -ne '\e[2 q'
+# else
+#   # steady bar cursor in other modes
+#   echo -ne '\e[6 q'
+# fi
+# zle reset-prompt
+# }
+# zle -N zle-line-init
+# zle -N zle-keymap-select
 
 ## Bind Meta-. to insert last word of previous command and stay in insert mode
 bindkey -M viins "\e." insert-last-word
