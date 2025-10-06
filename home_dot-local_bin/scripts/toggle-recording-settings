@@ -23,22 +23,9 @@ else
   sed -i '' "s/font_size = $RECORDING_FONT_SIZE/font_size = $DEFAULT_FONT_SIZE/g" "$WEZTERM_CONFIG"
 fi
 if [ ! -e "$TOGGLE" ]; then
-  sed -i '' 's|config.default_prog = { "/bin/zsh", "-l", "-c", "--", "tmux new -As base" }|-- config.default_prog = { "/bin/zsh", "-l", "-c", "--", "tmux new -As base" }|' "$WEZTERM_CONFIG"
+  sed -i '' 's/config.default_prog/--config.default_prog/' "$WEZTERM_CONFIG"
 else
-  sed -i '' 's|-- config.default_prog = { "/bin/zsh", "-l", "-c", "--", "tmux new -As base" }|config.default_prog = { "/bin/zsh", "-l", "-c", "--", "tmux new -As base" }|' "$WEZTERM_CONFIG"
-fi
-
-### Ghostty
-GHOSTTY_CONFIG="$XDG_CONFIG_HOME/ghostty/config"
-if [ ! -e "$TOGGLE" ]; then
-  sed -i '' "s/font-size = $DEFAULT_FONT_SIZE/font-size = $RECORDING_FONT_SIZE/g" "$GHOSTTY_CONFIG"
-else
-  sed -i '' "s/font-size = $RECORDING_FONT_SIZE/font-size = $DEFAULT_FONT_SIZE/g" "$GHOSTTY_CONFIG"
-fi
-if [ ! -e "$TOGGLE" ]; then
-  sed -i '' 's/command = tmux new -As base/#command = tmux new -As base/' "$GHOSTTY_CONFIG"
-else
-  sed -i '' 's/#command = tmux new -As base/command = tmux new -As base/' "$GHOSTTY_CONFIG"
+  sed -i '' 's/--config.default_prog/config.default_prog/' "$WEZTERM_CONFIG"
 fi
 
 # Sketchybar
@@ -71,7 +58,6 @@ else
 fi
 
 # starship
-## Show
 STARSHIP_CONFIG="$XDG_CONFIG_HOME/starship/starship.toml"
 if [ ! -e "$TOGGLE" ]; then
   sed -i '' '/https:\/\/starship.rs\/config-schema.json/a\
