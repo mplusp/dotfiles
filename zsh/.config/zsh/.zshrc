@@ -245,3 +245,12 @@ alias kgp="kubectl get pods"
 alias kgs="kubectl get services"
 alias kd="kubectl describe"
 alias ksc="kubectl config use-context"
+
+# tmux session switcher
+# ------------------------------------------------------------------------------
+tmux_session_switcher_function() {
+    tmux-session-switcher
+}
+zle -N tmux_session_switcher_function
+bindkey -r '^g' # Remove binding for ^g. Defaults to sending SIGINT
+bindkey '^g^g' tmux_session_switcher_function

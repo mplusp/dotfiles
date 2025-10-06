@@ -1,0 +1,13 @@
+#!/usr/bin/env sh
+
+# TODO: Make this actually work when not inside tmux
+tmux ls 2>/dev/null | cut -d: -f1 | grep -v $(tmux display -p "#S") |
+fzf --reverse --print-query | {
+  read query
+  read selection || selection=""
+  if [ -z "$selection" ]; then
+    tmux new -ds "$query" && tmux switch-client -t "$query"
+  else
+    tmux switch-client -t "$selection"
+  fi
+}
