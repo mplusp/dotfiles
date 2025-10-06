@@ -56,6 +56,8 @@ config.window_decorations = "RESIZE"
 config.hide_tab_bar_if_only_one_tab = true
 config.native_macos_fullscreen_mode = false
 config.use_fancy_tab_bar = false
+config.max_fps = 144
+config.animation_fps = 144
 
 -- Keybindings
 config.keys = {
