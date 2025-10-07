@@ -1,10 +1,6 @@
 [user]
 	name = Marco Peluso
 	email = marco@pelu.so
-[alias]
-	st = status
-	ol = log --pretty=oneline
-	olg = log --graph --decorate --pretty=oneline --abbrev-commit --all
 [core]
 	editor = nvim
 	pager = bat

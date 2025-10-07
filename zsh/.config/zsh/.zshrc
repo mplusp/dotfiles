@@ -236,6 +236,13 @@ else
   echo ERROR: eza could not be found. Skip setting up eza aliases.
 fi
 
+# Git
+# ------------------------------------------------------------------------------
+alias gst="git status"
+alias gol="git log --pretty=oneline"
+alias golg="git log --graph --decorate --pretty=oneline --abbrev-commit --all"
+alias gsubinit="git submodule update --init --recursive && git submodule foreach --recursive 'git checkout main || git checkout master'"
+
 # Other aliases
 # ------------------------------------------------------------------------------
 alias n="nvim"
