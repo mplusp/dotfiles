@@ -242,6 +242,7 @@ alias gst="git status"
 alias gol="git log --pretty=oneline"
 alias golg="git log --graph --decorate --pretty=oneline --abbrev-commit --all"
 alias gsubinit="git submodule update --init --recursive && git submodule foreach --recursive 'git checkout main || git checkout master'"
+alias gsubupdate="git submodule foreach --recursive 'git fetch && (git checkout main || git checkout master) && git pull'"
 
 # Other aliases
 # ------------------------------------------------------------------------------
