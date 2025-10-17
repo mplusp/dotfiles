@@ -161,15 +161,6 @@ else
   echo ERROR: Could not load starship.
 fi
 
-# Git and LazyGit
-# ------------------------------------------------------------------------------
-## Aliases
-alias gst="git status"
-alias gci="git commit"
-alias gp="git push"
-alias gfa="git fetch --all"
-alias lg="lazygit"
-
 # fzf
 # ------------------------------------------------------------------------------
 if type fzf &>/dev/null; then
@@ -238,11 +229,23 @@ fi
 
 # Git
 # ------------------------------------------------------------------------------
-alias gst="git status"
+## Aliases
+alias gs="git status"
+alias gc="git commit"
+alias gd="git diff"
+alias gds="git diff --staged"
+alias gp="git pull"
+alias gP="git push"
+alias gfa="git fetch --all"
 alias gol="git log --pretty=oneline"
-alias golg="git log --graph --decorate --pretty=oneline --abbrev-commit --all"
+alias golg="git log --graph --decorate --pretty=oneline --abbrev-commit"
+alias golga="git log --graph --decorate --pretty=oneline --abbrev-commit --all"
 alias gsubinit="git submodule update --init --recursive && git submodule foreach --recursive 'git checkout main || git checkout master'"
 alias gsubupdate="git submodule foreach --recursive 'git fetch && (git checkout main || git checkout master) && git pull'"
+
+# LazyGit
+# ------------------------------------------------------------------------------
+alias lg="lazygit"
 
 # Other aliases
 # ------------------------------------------------------------------------------

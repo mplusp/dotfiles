@@ -6,3 +6,5 @@
 	pager = bat
 [init]
 	defaultBranch = main
+[pull]
+	rebase = true
