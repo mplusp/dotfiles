@@ -126,6 +126,14 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
   fi
 fi
 
+# mise-en-place
+# ------------------------------------------------------------------------------
+if type mise &>/dev/null; then
+  eval "$(mise completion zsh)"
+else
+  echo ERROR: Could not evaluate mise completions
+fi
+
 # Set Up Plugins
 # ------------------------------------------------------------------------------
 source "$ZDOTDIR/plugin_helper.zsh"
