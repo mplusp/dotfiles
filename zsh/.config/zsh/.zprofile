@@ -26,3 +26,30 @@ export PATH="$PATH:$HOME/.cargo/bin"
 # Rancher Desktop
 # ------------------------------------------------------------------------------
 export PATH="$PATH:$HOME/.rd/bin"
+
+# Homebrew (brew.sh)
+# ------------------------------------------------------------------------------
+if [[ "$OSTYPE" == "darwin"* ]]; then
+  if [[ -e "/opt/homebrew/bin/brew" ]]; then
+    eval "$(/opt/homebrew/bin/brew shellenv)"
+  else
+    echo ERROR: Could not find brew. Skip setting up brew shellenv.
+  fi
+fi
+
+# mise-en-place
+# ------------------------------------------------------------------------------
+if type mise &>/dev/null; then
+  eval "$(mise activate zsh)"
+  eval "$(mise completion zsh)"
+else
+  echo ERROR: Could not activate mise.
+fi
+
+# bob
+# ------------------------------------------------------------------------------
+if [[ -e "$XDG_DATA_HOME/bob/env/env.sh" ]]; then
+  source "$XDG_DATA_HOME/bob/env/env.sh"
+else
+  echo "ERROR: Could not source $XDG_DATA_HOME/bob/env/env.sh"
+fi

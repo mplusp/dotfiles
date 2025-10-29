@@ -114,6 +114,18 @@ zstyle :compinstall filename "$ZDOTDIR/.zshrc"
 ### Set location for compinit's dumpfile.
 autoload -Uz compinit && compinit -d "$cache_directory/compinit-dumpfile"
 
+# Homebrew (brew.sh) completions
+# ------------------------------------------------------------------------------
+if [[ "$OSTYPE" == "darwin"* ]]; then
+  if type brew &>/dev/null; then
+    FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
+    autoload -Uz compinit
+    compinit -d "$cache_directory/compinit-dumpfile"
+  else
+    echo ERROR: Could not load brew completions.
+  fi
+fi
+
 # Set Up Plugins
 # ------------------------------------------------------------------------------
 source "$ZDOTDIR/plugin_helper.zsh"
@@ -124,32 +136,6 @@ plugins=(
 )
 __init_plugins "${plugins[@]}"
 
-# Homebrew (brew.sh)
-# ------------------------------------------------------------------------------
-if [[ "$OSTYPE" == "darwin"* ]]; then
-  if [[ -e "/opt/homebrew/bin/brew" ]]; then
-    eval "$(/opt/homebrew/bin/brew shellenv)"
-  else
-    echo ERROR: Could not find brew. Skip setting up brew shellenv.
-  fi
-## Brew completions
-  if type brew &>/dev/null; then
-    FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
-    autoload -Uz compinit
-    compinit -d "$cache_directory/compinit-dumpfile"
-  else
-    echo ERROR: Could not load brew completions.
-  fi
-fi
-
-# mise-en-place
-# ------------------------------------------------------------------------------
-if type mise &>/dev/null; then
-  eval "$(mise activate zsh)"
-  eval "$(mise completion zsh)"
-else
-  echo ERROR: Could not activate mise.
-fi
 
 # Starship
 # ------------------------------------------------------------------------------
@@ -198,14 +184,6 @@ if type zoxide &>/dev/null; then
   eval "$(zoxide init zsh --cmd cd)"
 else
   echo ERROR: Could not load zoxide shell integration.
-fi
-
-# bob
-# ------------------------------------------------------------------------------
-if type zoxide &>/dev/null; then
-  source "$XDG_DATA_HOME/bob/env/env.sh"
-else
-  echo "ERROR: Could not source bob env.sh"
 fi
 
 # eza (better `ls`)
