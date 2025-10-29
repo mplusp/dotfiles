@@ -41,7 +41,7 @@ if wezterm.config_builder then
 end
 
 -- Start tmux when opening WezTerm
-config.default_prog = { "/bin/zsh", "-l", "-c", "--", 'eval "$(mise env)" && tmux new -As base' }
+config.default_prog = { "/bin/zsh", "-l", "-c", "--", 'tmux new -As base' }
 
 -- Skip closing confirmation when tmux is running
 config.skip_close_confirmation_for_processes_named = { "tmux" }
