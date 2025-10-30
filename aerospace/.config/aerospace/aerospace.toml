@@ -129,6 +129,9 @@ run = 'move-node-to-workspace 7'
 if.app-id = 'com.microsoft.teams2'
 run = 'move-node-to-workspace 7'
 
+[[on-window-detected]]
+if.app-id = 'com.rode.rodeunify'
+run = ['layout tiling', 'move-node-to-workspace 9']
 
 # Possible values: (qwerty|dvorak)
 # See https://nikitabobko.github.io/AeroSpace/guide#key-mapping
