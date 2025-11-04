@@ -97,6 +97,18 @@ config.keys = {
       args = { os.getenv("SHELL"), "-l", "-c", "zsh" },
     }),
   },
+  -- Disable CTRL+N (default new window binding)
+  {
+    key = "n",
+    mods = "CTRL",
+    action = wezterm.action.DisableDefaultAssignment,
+  },
+  -- Bind new window to CTRL+SHIFT+N instead
+  {
+    key = "n",
+    mods = "CTRL|SHIFT",
+    action = wezterm.action.SpawnWindow,
+  },
 }
 
 -- Return config to WezTerm
