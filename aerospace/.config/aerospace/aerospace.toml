@@ -130,6 +130,14 @@ if.app-id = 'com.microsoft.teams2'
 run = 'move-node-to-workspace 7'
 
 [[on-window-detected]]
+if.app-id = 'io.rancherdesktop.app'
+run = 'move-node-to-workspace 8'
+
+[[on-window-detected]]
+if.app-id = 'com.spotify.client'
+run = 'move-node-to-workspace 8'
+
+[[on-window-detected]]
 if.app-id = 'com.rode.rodeunify'
 run = ['layout tiling', 'move-node-to-workspace 9']
 
