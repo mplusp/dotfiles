@@ -245,9 +245,6 @@ alias ksc="kubectl config use-context"
 
 # tmux session switcher
 # ------------------------------------------------------------------------------
-tmux_session_switcher_function() {
-    tmux-session-switcher
-}
-zle -N tmux_session_switcher_function
-bindkey -r '^g' # Remove binding for ^g. Defaults to sending SIGINT
-bindkey '^g^g' tmux_session_switcher_function
+## Remove binding for ^g. Defaults to sending SIGINT
+bindkey -r '^g'
+bindkey -s '^g ' 'tmux-session-switcher\n'

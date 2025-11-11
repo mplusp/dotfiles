@@ -1,13 +1,24 @@
 #!/usr/bin/env sh
 
-# TODO: Make this actually work when not inside tmux
-tmux ls 2>/dev/null | cut -d: -f1 | grep -v $(tmux display -p "#S") |
-fzf --reverse --print-query | {
-  read query
-  read selection || selection=""
-  if [ -z "$selection" ]; then
-    tmux new -ds "$query" && tmux switch-client -t "$query"
-  else
-    tmux switch-client -t "$selection"
+if [ -n "$TMUX" ]; then
+  tmux ls 2>/dev/null | cut -d: -f1 | grep -v "$(tmux display -p "#S")" |
+  fzf --reverse --print-query | {
+    read -r query
+    read -r selection || selection=""
+    if [ -z "$selection" ]; then
+      tmux new -ds "$query" && tmux switch-client -t "$query"
+    else
+      tmux switch-client -t "$selection"
+    fi
+  }
+else
+  session_list=$(tmux ls 2>/dev/null | cut -d: -f1)
+  selected=$(echo "$session_list" | fzf --reverse --print-query --prompt="Select or create session: " | tail -n1)
+  if [ -n "$selected" ]; then
+    if tmux has-session -t "$selected" 2>/dev/null; then
+      exec tmux attach -t "$selected"
+    else
+      exec tmux new -s "$selected"
+    fi
   fi
-}
+fi
