@@ -10,9 +10,6 @@ setopt NO_FLOW_CONTROL
 
 # Set Up Line Editor
 # ------------------------------------------------------------------------------
-## Enable vi mode
-bindkey -v
-
 ## Enable edit-command-line widget for vi mode
 autoload -U edit-command-line
 zle -N edit-command-line
@@ -141,6 +138,7 @@ plugins=(
   zsh-users/zsh-syntax-highlighting
   zsh-users/zsh-autosuggestions
   Aloxaf/fzf-tab
+  jeffreytse/zsh-vi-mode
 )
 __init_plugins "${plugins[@]}"
 
