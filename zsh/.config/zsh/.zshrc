@@ -16,57 +16,22 @@ bindkey -v
 ## Enable edit-command-line widget for vi mode
 autoload -U edit-command-line
 zle -N edit-command-line
-bindkey -M vicmd '^X^E' edit-command-line
-bindkey -M viins '^X^E' edit-command-line
+bindkey -M viins '^Xe' edit-command-line
 
 ## Lower mode switching delay to 10ms
 KEYTIMEOUT=1
 
-## Change cursor shape depending on active vi mode
-## Cursor shape control sequences are defind in
-## [XTerm Control Sequences](https://invisible-island.net/xterm/ctlseqs/ctlseqs.html#h4-Functions-using-CSI-_-ordered-by-the-final-character-lparen-s-rparen:CSI-Ps-SP-q.1D81)
-## Inspired by:
-## - https://unix.stackexchange.com/questions/547/make-my-zsh-prompt-show-mode-in-vi-mode/327572#327572
-## - https://web.archive.org/web/20240411231013/https://dougblack.io/words/zsh-vi-mode.html
-# function zle-line-init zle-keymap-select {
-# if [[ ${KEYMAP} == vicmd ]]; then
-#   # steady block cursor in cmd mode
-#   echo -ne '\e[2 q'
-# else
-#   # steady bar cursor in other modes
-#   echo -ne '\e[6 q'
-# fi
-# zle reset-prompt
-# }
-# zle -N zle-line-init
-# zle -N zle-keymap-select
-
-## Bind Meta-. to insert last word of previous command and stay in insert mode
-bindkey -M viins "\e." insert-last-word
-
-## Bind C-R to search backwards in all modes
-bindkey '^R' history-incremental-search-backward
-
-## Bind C-S to search forward in all modes
-bindkey '^S' history-incremental-search-forward
-
 ## History expansion on space
 bindkey ' ' magic-space
 
-## Bind history navigation to C-P and C-N in all modes
-bindkey '^P' up-line-or-history
-
-## Bind history navigation to C-P and C-N in all modes
-bindkey '^N' down-line-or-history
-
-## Bind C-D to forward delete next char
-bindkey '^D' delete-char
-
-## Additionaly set up basic Emacs-style navigation
+## Enable some basic Emacs-style navigation
 bindkey '^A' beginning-of-line
 bindkey '^E' end-of-line
-bindkey '^F' forward-char
-bindkey '^B' backward-char
+
+## Remove binding for ^g (defaults to sending SIGINT) and call
+## tmux-session-switcher instead
+bindkey -r '^G'
+bindkey -s '^G ' 'tmux-session-switcher\n'
 
 # Set Up Command History
 # ------------------------------------------------------------------------------
@@ -145,6 +110,11 @@ plugins=(
 )
 __init_plugins "${plugins[@]}"
 
+## Things to set up AFTER zsh-vi-mode has been initialized
+zvm_after_init_commands+=(
+  fzf_init
+)
+
 
 # Starship
 # ------------------------------------------------------------------------------
@@ -158,34 +128,37 @@ fi
 
 # fzf
 # ------------------------------------------------------------------------------
-if type fzf &>/dev/null; then
-  source <(fzf --zsh)
+## fzf setup inside this function to append it to zvm_after_init_commands
+function fzf_init() {
+  if type fzf &>/dev/null; then
+    source <(fzf --zsh)
 
-  export FZF_CTRL_R_OPTS="
-  --color header:italic
-  --height=80%
-  --bind 'ctrl-y:execute-silent(echo -n {2..} | pbcopy)+abort'
-  --header 'CTRL-Y: Copy command into clipboard, CTRL-/: Toggle line wrapping, CTRL-R: Toggle sorting by relevance'
-  "
+    export FZF_CTRL_R_OPTS="
+    --color header:italic
+    --height=80%
+    --bind 'ctrl-y:execute-silent(echo -n {2..} | pbcopy)+abort'
+    --header 'CTRL-Y: Copy command into clipboard, CTRL-/: Toggle line wrapping, CTRL-R: Toggle sorting by relevance'
+    "
 
-  export FZF_CTRL_T_OPTS="
-  --walker-skip .git,node_modules,target
-  --preview 'bat -n --color=always {}'
-  --height=80%
-  --bind 'ctrl-/:change-preview-window(down|hidden|)'
-  --header 'CTRL-/: Toggle preview window position'
-  "
+    export FZF_CTRL_T_OPTS="
+    --walker-skip .git,node_modules,target
+    --preview 'bat -n --color=always {}'
+    --height=80%
+    --bind 'ctrl-/:change-preview-window(down|hidden|)'
+    --header 'CTRL-/: Toggle preview window position'
+    "
 
-  export FZF_ALT_C_OPTS="
-  --walker-skip .git,node_modules,target
-  --preview 'tree -C {}'
-  --height=80%
-  --bind 'ctrl-/:change-preview-window(down|hidden|)'
-  --header 'CTRL-/: Toggle preview window position'
-  "
-else
-  echo ERROR: Could not fzf shell integration.
-fi
+    export FZF_ALT_C_OPTS="
+    --walker-skip .git,node_modules,target
+    --preview 'tree -C {}'
+    --height=80%
+    --bind 'ctrl-/:change-preview-window(down|hidden|)'
+    --header 'CTRL-/: Toggle preview window position'
+    "
+  else
+    echo ERROR: Could not fzf shell integration.
+  fi
+}
 
 # zoxide (better `cd`)
 # ------------------------------------------------------------------------------
@@ -244,9 +217,3 @@ alias kgp="kubectl get pods"
 alias kgs="kubectl get services"
 alias kd="kubectl describe"
 alias ksc="kubectl config use-context"
-
-# tmux session switcher
-# ------------------------------------------------------------------------------
-## Remove binding for ^g. Defaults to sending SIGINT
-bindkey -r '^g'
-bindkey -s '^g ' 'tmux-session-switcher\n'
