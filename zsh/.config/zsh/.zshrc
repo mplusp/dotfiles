@@ -115,7 +115,6 @@ zvm_after_init_commands+=(
   fzf_init
 )
 
-
 # Starship
 # ------------------------------------------------------------------------------
 if type starship &>/dev/null; then
@@ -209,6 +208,14 @@ alias gsubupdate="git submodule foreach --recursive 'git fetch && (git checkout 
 # LazyGit
 # ------------------------------------------------------------------------------
 alias lg="lazygit"
+
+# Docker
+# ------------------------------------------------------------------------------
+if type docker &>/dev/null; then
+  eval "$(docker completion zsh)"
+else
+  echo ERROR: eza could not be found. Skip setting up docker completion
+fi
 
 # Other aliases
 # ------------------------------------------------------------------------------
