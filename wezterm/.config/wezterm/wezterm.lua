@@ -47,7 +47,11 @@ config.default_prog = { "/bin/zsh", "-l", "-c", "--", 'tmux new -As base' }
 config.skip_close_confirmation_for_processes_named = { "tmux" }
 
 -- Appearance
-config.font = wezterm.font "IosevkaTerm Nerd Font Mono"
+config.font = wezterm.font_with_fallback {
+  "DepartureMono Nerd Font",
+  "IosevkaTerm Nerd Font Mono",
+  "JetBrainsMono Nerd Font",
+}
 config.font_size = 18.0
 config.color_scheme = color_scheme_for_appearance(wezterm.gui.get_appearance())
 config.window_background_opacity = window_background_opacity
