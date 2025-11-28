@@ -96,7 +96,7 @@ fi
 if type mise &>/dev/null; then
   eval "$(mise completion zsh)"
 else
-  echo ERROR: Could not evaluate mise completions
+  echo ERROR: Could not load mise completions.
 fi
 
 # Set Up Plugins
@@ -214,7 +214,7 @@ alias lg="lazygit"
 if type docker &>/dev/null; then
   eval "$(docker completion zsh)"
 else
-  echo ERROR: eza could not be found. Skip setting up docker completion
+  echo ERROR: docker could not be found. Skip setting up docker completion.
 fi
 
 # Other aliases
