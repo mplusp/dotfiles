@@ -44,11 +44,3 @@ if type mise &>/dev/null; then
 else
   echo ERROR: Could not activate mise.
 fi
-
-# bob
-# ------------------------------------------------------------------------------
-if [[ -e "$XDG_DATA_HOME/bob/env/env.sh" ]]; then
-  source "$XDG_DATA_HOME/bob/env/env.sh"
-else
-  echo "ERROR: Could not source $XDG_DATA_HOME/bob/env/env.sh"
-fi
