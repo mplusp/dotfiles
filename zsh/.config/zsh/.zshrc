@@ -86,8 +86,6 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
     FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
     autoload -Uz compinit
     compinit -d "$cache_directory/compinit-dumpfile"
-  else
-    echo ERROR: Could not load brew completions.
   fi
 fi
 
@@ -95,8 +93,6 @@ fi
 # ------------------------------------------------------------------------------
 if type mise &>/dev/null; then
   eval "$(mise completion zsh)"
-else
-  echo ERROR: Could not load mise completions.
 fi
 
 # Set Up Plugins
@@ -121,8 +117,6 @@ if type starship &>/dev/null; then
   eval "$(starship init zsh)"
   eval "$(starship completions zsh)"
   export STARSHIP_CONFIG="$XDG_CONFIG_HOME/starship/starship.toml"
-else
-  echo ERROR: Could not load starship.
 fi
 
 # fzf
@@ -154,8 +148,6 @@ function fzf_init() {
     --bind 'ctrl-/:change-preview-window(down|hidden|)'
     --header 'CTRL-/: Toggle preview window position'
     "
-  else
-    echo ERROR: Could not fzf shell integration.
   fi
 }
 
@@ -163,8 +155,6 @@ function fzf_init() {
 # ------------------------------------------------------------------------------
 if type zoxide &>/dev/null; then
   eval "$(zoxide init zsh --cmd cd)"
-else
-  echo ERROR: Could not load zoxide shell integration.
 fi
 
 # eza (better `ls`)
@@ -185,8 +175,6 @@ if type eza &>/dev/null; then
   alias lta3="eza -lTag --level=3 --icons=always"
   alias lta4="eza -lTag --level=4 --icons=always"
   alias lta="eza -lTag --icons=always"
-else
-  echo ERROR: eza could not be found. Skip setting up eza aliases.
 fi
 
 # Git
@@ -213,8 +201,6 @@ alias lg="lazygit"
 # ------------------------------------------------------------------------------
 if type docker &>/dev/null; then
   eval "$(docker completion zsh)"
-else
-  echo ERROR: docker could not be found. Skip setting up docker completion.
 fi
 
 # Other aliases
