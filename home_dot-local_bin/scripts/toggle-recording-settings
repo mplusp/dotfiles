@@ -58,16 +58,10 @@ else
 fi
 
 # starship
-STARSHIP_CONFIG="$XDG_CONFIG_HOME/starship/starship.toml"
 if [ ! -e "$TOGGLE" ]; then
-  sed -i '' '/https:\/\/starship.rs\/config-schema.json/a\
-format = """\
-\$username\
-\$hostname\
-\$shlvl\
-\$directory\
-\$character"""\
-' "$STARSHIP_CONFIG"
+  stow -D -d ~/.dotfiles -t "$XDG_CONFIG_HOME" starship
+  stow -d ~/playground/dotfiles/xdg_config_home -t "$XDG_CONFIG_HOME" starship-youtube
 else
-  sed -i '' '/format = """/,/\$character"""/d' "$STARSHIP_CONFIG"
+  stow -D -d ~/playground/dotfiles/xdg_config_home -t "$XDG_CONFIG_HOME" starship-youtube
+  stow -d ~/.dotfiles -t "$XDG_CONFIG_HOME" starship
 fi
