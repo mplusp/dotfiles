@@ -19,13 +19,20 @@ RECORDING_FONT_SIZE=36
 WEZTERM_CONFIG="$XDG_CONFIG_HOME/wezterm/wezterm.lua"
 if [ ! -e "$TOGGLE" ]; then
   sed -i '' "s/font_size = $DEFAULT_FONT_SIZE/font_size = $RECORDING_FONT_SIZE/g" "$WEZTERM_CONFIG"
-else
-  sed -i '' "s/font_size = $RECORDING_FONT_SIZE/font_size = $DEFAULT_FONT_SIZE/g" "$WEZTERM_CONFIG"
-fi
-if [ ! -e "$TOGGLE" ]; then
   sed -i '' 's/config.default_prog/--config.default_prog/' "$WEZTERM_CONFIG"
 else
+  sed -i '' "s/font_size = $RECORDING_FONT_SIZE/font_size = $DEFAULT_FONT_SIZE/g" "$WEZTERM_CONFIG"
   sed -i '' 's/--config.default_prog/config.default_prog/' "$WEZTERM_CONFIG"
+fi
+
+# tmux
+TMUX_CONFIG="$XDG_CONFIG_HOME/tmux/tmux.conf"
+if [ ! -e "$TOGGLE" ]; then
+  sed -i '' 's/set -g status-right "#\[fg=#{@purple}\]#S:#I.#P"/set -g status-right "#[fg=#{@purple}]#S"/g' "$TMUX_CONFIG"
+  tmux source-file "$TMUX_CONFIG"
+else
+  sed -i '' 's/set -g status-right "#\[fg=#{@purple}\]#S"/set -g status-right "#[fg=#{@purple}]#S:#I.#P"/g' "$TMUX_CONFIG"
+  tmux source-file "$TMUX_CONFIG"
 fi
 
 # Sketchybar
