@@ -10,12 +10,10 @@ else
   rm "$TOGGLE"
 fi
 
-# Terminals
+# WezTerm
 ## Use big font while recording. Also don't start with tmux by default.
 DEFAULT_FONT_SIZE=18
-RECORDING_FONT_SIZE=36
-
-### WezTerm
+RECORDING_FONT_SIZE=38
 WEZTERM_CONFIG="$XDG_CONFIG_HOME/wezterm/wezterm.lua"
 if [ ! -e "$TOGGLE" ]; then
   sed -i '' "s/font_size = $DEFAULT_FONT_SIZE/font_size = $RECORDING_FONT_SIZE/g" "$WEZTERM_CONFIG"
@@ -26,6 +24,7 @@ else
 fi
 
 # tmux
+## Don't show current window and pane numbers while recording
 TMUX_CONFIG="$XDG_CONFIG_HOME/tmux/tmux.conf"
 if [ ! -e "$TOGGLE" ]; then
   sed -i '' 's/set -g status-right "#\[fg=#{@purple}\]#S:#I.#P"/set -g status-right "#[fg=#{@purple}]#S"/g' "$TMUX_CONFIG"
@@ -65,6 +64,7 @@ else
 fi
 
 # starship
+## Use completely different configs depending on if recording or not
 if [ ! -e "$TOGGLE" ]; then
   stow -D -d ~/.dotfiles -t "$XDG_CONFIG_HOME" starship
   stow -d ~/playground/dotfiles/xdg_config_home -t "$XDG_CONFIG_HOME" starship-youtube
