@@ -154,7 +154,7 @@ preset = 'qwerty'
 # Open/focus apps using keybinds
 # See: https://nikitabobko.github.io/AeroSpace/commands#exec-and-forget
 cmd-alt-ctrl-shift-b = 'exec-and-forget open -a "Brave Browser.app"'
-cmd-alt-ctrl-shift-d = 'exec-and-forget open -a "IntelliJ IDEA Ultimate.app"'
+# cmd-alt-ctrl-shift-d = 'exec-and-forget open -a "IntelliJ IDEA Ultimate.app"'
 cmd-alt-ctrl-shift-t = 'exec-and-forget open -a "WezTerm.app"'
 cmd-alt-ctrl-shift-a = 'exec-and-forget open -a "Ghostty.app"'
 cmd-alt-ctrl-shift-z = 'exec-and-forget open -a "Obsidian.app"'
