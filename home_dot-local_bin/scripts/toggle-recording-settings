@@ -40,11 +40,21 @@ fi
 
 # Sketchybar
 ## Don't show clock while recording
+## Change font to JetBrains Mono while recording
 SKETCHYBAR_CONFIG="$XDG_CONFIG_HOME/sketchybar/sketchybarrc"
+SKETCHYBAR_THEME_TOKYONIGHT="$XDG_CONFIG_HOME/sketchybar/themes/tokyonight"
 if [ ! -e "$TOGGLE" ]; then
   sed -i '' 's|source "$ITEM_DIR/clock"|#source "$ITEM_DIR/clock"|g' "$SKETCHYBAR_CONFIG"
+  sed -i '' 's/LABEL_BASE_FONT="DepartureMono Nerd Font"/LABEL_BASE_FONT="JetBrainsMono Nerd Font"/g' "$SKETCHYBAR_THEME_TOKYONIGHT"
+  sed -i '' 's/LABEL_FONT="$LABEL_BASE_FONT:Regular:16.0"/LABEL_FONT="$LABEL_BASE_FONT:Regular:14.0"/g' "$SKETCHYBAR_THEME_TOKYONIGHT"
+  sed -i '' 's/LABEL_FONT="$LABEL_BASE_FONT:Regular:16.0"/LABEL_FONT="$LABEL_BASE_FONT:Regular:14.0"/g' "$SKETCHYBAR_THEME_TOKYONIGHT"
+  sed -i '' 's/LABEL_HIGHLIGHT_FONT="$LABEL_BASE_FONT:Regular:16.0"/LABEL_HIGHLIGHT_FONT="$LABEL_BASE_FONT:Regular:14.0"/g' "$SKETCHYBAR_THEME_TOKYONIGHT"
 else
   sed -i '' 's|#source "$ITEM_DIR/clock"|source "$ITEM_DIR/clock"|g' "$SKETCHYBAR_CONFIG"
+  sed -i '' 's/LABEL_BASE_FONT="JetBrainsMono Nerd Font"/LABEL_BASE_FONT="DepartureMono Nerd Font"/g' "$SKETCHYBAR_THEME_TOKYONIGHT"
+  sed -i '' 's/LABEL_FONT="$LABEL_BASE_FONT:Regular:14.0"/LABEL_FONT="$LABEL_BASE_FONT:Regular:16.0"/g' "$SKETCHYBAR_THEME_TOKYONIGHT"
+  sed -i '' 's/LABEL_FONT="$LABEL_BASE_FONT:Regular:14.0"/LABEL_FONT="$LABEL_BASE_FONT:Regular:16.0"/g' "$SKETCHYBAR_THEME_TOKYONIGHT"
+  sed -i '' 's/LABEL_HIGHLIGHT_FONT="$LABEL_BASE_FONT:Regular:14.0"/LABEL_HIGHLIGHT_FONT="$LABEL_BASE_FONT:Regular:16.0"/g' "$SKETCHYBAR_THEME_TOKYONIGHT"
 fi
 
 # nvim
@@ -67,12 +77,13 @@ else
 ' "$ZSH_CONFIG"
 fi
 
+# TODO: fix this
 # starship
 ## Use completely different configs depending on if recording or not
-if [ ! -e "$TOGGLE" ]; then
-  stow -D -d ~/.dotfiles -t "$XDG_CONFIG_HOME" starship
-  stow -d ~/playground/dotfiles/xdg_config_home -t "$XDG_CONFIG_HOME" starship-youtube
-else
-  stow -D -d ~/playground/dotfiles/xdg_config_home -t "$XDG_CONFIG_HOME" starship-youtube
-  stow -d ~/.dotfiles -t "$XDG_CONFIG_HOME" starship
-fi
+# if [ ! -e "$TOGGLE" ]; then
+#   stow -D -d ~/.dotfiles -t "$XDG_CONFIG_HOME" starship
+#   stow -d ~/playground/dotfiles/xdg_config_home -t "$XDG_CONFIG_HOME" starship-youtube
+# else
+#   stow -D -d ~/playground/dotfiles/xdg_config_home -t "$XDG_CONFIG_HOME" starship-youtube
+#   stow -d ~/.dotfiles -t "$XDG_CONFIG_HOME" starship
+# fi
