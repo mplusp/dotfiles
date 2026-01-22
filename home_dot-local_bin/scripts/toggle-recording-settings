@@ -14,16 +14,16 @@ fi
 ## Don't use DepartureMono for recording.
 ## Use big font while recording.
 ## Also don't start/attach to tmux by default.
-DEFAULT_FONT_SIZE=18
-RECORDING_FONT_SIZE=44
+DEFAULT_TERMINAL_FONT_SIZE=18
+RECORDING_TERMINAL_FONT_SIZE=44
 WEZTERM_CONFIG="$XDG_CONFIG_HOME/wezterm/wezterm.lua"
 if [ ! -e "$TOGGLE" ]; then
   sed -i '' 's/"DepartureMono/--"DepartureMono/' "$WEZTERM_CONFIG"
-  sed -i '' "s/font_size = $DEFAULT_FONT_SIZE/font_size = $RECORDING_FONT_SIZE/g" "$WEZTERM_CONFIG"
+  sed -i '' "s/font_size = $DEFAULT_TERMINAL_FONT_SIZE/font_size = $RECORDING_TERMINAL_FONT_SIZE/g" "$WEZTERM_CONFIG"
   sed -i '' 's/config.default_prog/--config.default_prog/' "$WEZTERM_CONFIG"
 else
   sed -i '' 's/--"DepartureMono/"DepartureMono/' "$WEZTERM_CONFIG"
-  sed -i '' "s/font_size = $RECORDING_FONT_SIZE/font_size = $DEFAULT_FONT_SIZE/g" "$WEZTERM_CONFIG"
+  sed -i '' "s/font_size = $RECORDING_TERMINAL_FONT_SIZE/font_size = $DEFAULT_TERMINAL_FONT_SIZE/g" "$WEZTERM_CONFIG"
   sed -i '' 's/--config.default_prog/config.default_prog/' "$WEZTERM_CONFIG"
 fi
 
@@ -46,15 +46,9 @@ SKETCHYBAR_THEME_TOKYONIGHT="$XDG_CONFIG_HOME/sketchybar/themes/tokyonight"
 if [ ! -e "$TOGGLE" ]; then
   sed -i '' 's|source "$ITEM_DIR/clock"|#source "$ITEM_DIR/clock"|g' "$SKETCHYBAR_CONFIG"
   sed -i '' 's/LABEL_BASE_FONT="DepartureMono Nerd Font"/LABEL_BASE_FONT="JetBrainsMono Nerd Font"/g' "$SKETCHYBAR_THEME_TOKYONIGHT"
-  sed -i '' 's/LABEL_FONT="$LABEL_BASE_FONT:Regular:16.0"/LABEL_FONT="$LABEL_BASE_FONT:Regular:14.0"/g' "$SKETCHYBAR_THEME_TOKYONIGHT"
-  sed -i '' 's/LABEL_FONT="$LABEL_BASE_FONT:Regular:16.0"/LABEL_FONT="$LABEL_BASE_FONT:Regular:14.0"/g' "$SKETCHYBAR_THEME_TOKYONIGHT"
-  sed -i '' 's/LABEL_HIGHLIGHT_FONT="$LABEL_BASE_FONT:Regular:16.0"/LABEL_HIGHLIGHT_FONT="$LABEL_BASE_FONT:Regular:14.0"/g' "$SKETCHYBAR_THEME_TOKYONIGHT"
 else
   sed -i '' 's|#source "$ITEM_DIR/clock"|source "$ITEM_DIR/clock"|g' "$SKETCHYBAR_CONFIG"
   sed -i '' 's/LABEL_BASE_FONT="JetBrainsMono Nerd Font"/LABEL_BASE_FONT="DepartureMono Nerd Font"/g' "$SKETCHYBAR_THEME_TOKYONIGHT"
-  sed -i '' 's/LABEL_FONT="$LABEL_BASE_FONT:Regular:14.0"/LABEL_FONT="$LABEL_BASE_FONT:Regular:16.0"/g' "$SKETCHYBAR_THEME_TOKYONIGHT"
-  sed -i '' 's/LABEL_FONT="$LABEL_BASE_FONT:Regular:14.0"/LABEL_FONT="$LABEL_BASE_FONT:Regular:16.0"/g' "$SKETCHYBAR_THEME_TOKYONIGHT"
-  sed -i '' 's/LABEL_HIGHLIGHT_FONT="$LABEL_BASE_FONT:Regular:14.0"/LABEL_HIGHLIGHT_FONT="$LABEL_BASE_FONT:Regular:16.0"/g' "$SKETCHYBAR_THEME_TOKYONIGHT"
 fi
 
 # nvim
