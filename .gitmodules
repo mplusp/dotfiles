@@ -1,4 +1,4 @@
 [submodule "tmux/.config/tmux/plugins/tpm"]
-	path = tmux/.config/tmux/plugins/tpm
+	path = xdg_config_home/tmux/tmux/plugins/tpm
 	url = https://github.com/tmux-plugins/tpm
 	branch = master
