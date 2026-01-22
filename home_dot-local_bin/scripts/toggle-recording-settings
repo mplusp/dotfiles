@@ -13,9 +13,9 @@ fi
 # WezTerm
 ## Don't use DepartureMono for recording.
 ## Use big font while recording.
-## Also don't start with tmux by default.
+## Also don't start/attach to tmux by default.
 DEFAULT_FONT_SIZE=18
-RECORDING_FONT_SIZE=38
+RECORDING_FONT_SIZE=44
 WEZTERM_CONFIG="$XDG_CONFIG_HOME/wezterm/wezterm.lua"
 if [ ! -e "$TOGGLE" ]; then
   sed -i '' 's/"DepartureMono/--"DepartureMono/' "$WEZTERM_CONFIG"
